@@ -2,6 +2,14 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
 
+
+
+## Länkar
+[https://sakai.primeng.org/ Template](https://sakai.primeng.org/)
+[PrimeNG Components](https://primeng.org/autocomplete)
+
+
+
 ## Development server
 
 To start a local development server, run:
