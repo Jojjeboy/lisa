@@ -1,0 +1,35 @@
+<div class="grid mb-8" *ngFor="let todo of todos.categories; let i = index">
+    <div class="col-span-12 lg:col-span-6 xl:col-span-3">
+        <div class="card mb-0">
+            <div class="flex justify-between mt-4">
+                <div>
+                    <h4>{{ todo.title }}</h4>
+                    <p-divider />
+                    <div *ngFor="let list of todo.lists" class="mt-7">
+                        <div>
+                            <a href="#">
+                                <h5>
+                                    <i class="pi pi-bolt text-yellow-500" style="color: {{ list.color }}"></i> 
+                                    {{ list.title }}
+                                </h5>
+                                <p>{{ list.description }}<p>
+                                <p-chip class="!py-0 !pl-0 !pr-4">
+                                    <span class="bg-primary text-primary-contrast rounded-full w-8 h-8 flex items-center justify-center">
+                                        {{ list.todos.length }}
+                                    </span>
+                                    <span class="ml-2 font-medium">
+                                        uppgifter
+                                    </span>
+                                </p-chip>
+                            </a>
+                        </div>
+                        <div class="mt-6 font-small text-muted-color">Använd senast: {{ list.lastTouched | date:" d MMM, yyyy " }} </div>
+                        <p-divider />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+      

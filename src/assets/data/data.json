@@ -1,0 +1,128 @@
+{
+    "categories": [
+        {
+            "uuid": "d1f770f9-6703-413d-8d16-56b977e2e9f9",
+            "title": "Packning jobb",
+            "lists": [
+                {
+                    "uuid": "d0b2f747-af29-41eb-a78d-c02abd724342",
+                    "title": "Regionens hus",
+                    "description": "Packning för vanlig dag på Regionens Hus Göteborg",
+                    "color": "#FF5733",
+                    "starred": true,
+                    "lastTouched": "2025-04-02T12:00:00Z",
+                    "todos": [
+                        {
+                            "title": "SITHS-kort",
+                            "description": "Packning för vanlig dag på mölndalskontoret",
+                            "completed": false,
+                            "dueDate": null
+                        },
+                        {
+                            "title": "Glasögon",
+                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                            "completed": true,
+                            "dueDate": null
+                        }
+                    ]
+                },
+                {
+                    "uuid": "db77e75a-f00c-488c-8780-5ab36b6b240f",
+                    "title": "Mölndalskontoret",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    "color": "#FF5733",
+                    "starred": true,
+                    "lastTouched": "2025-04-02T12:00:00Z",
+                    "todos": [
+                        {
+                            "title": "Glasögon",
+                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                            "completed": false,
+                            "dueDate": "2025-09-02T12:00:00Z"
+                        },
+                        {
+                            "title": "SITHS-kort",
+                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                            "completed": true,
+                            "dueDate": null
+                        },
+                        {
+                            "title": "Matlåda",
+                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                            "completed": true,
+                            "dueDate": "2025-09-04T12:00:00Z"
+                        },
+                        {
+                            "title": "Leave stuff at the office",
+                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                            "completed": true,
+                            "dueDate": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "uuid": "613964d7-2977-47df-8bd8-d262b529e4dc",
+            "title": "Städning",
+            "lists": [
+                {
+                    "uuid": "d0b2f747-af29-41eb-a78d-c02abd724342",
+                    "title": "Städa toa",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    "color": "#FF5733",
+                    "starred": false,
+                    "lastTouched": "2025-03-02T12:00:00Z",
+                    "todos": [
+                        {
+                            "title": "Rengör toastolen",
+                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                            "completed": false,
+                            "dueDate": "2025-10-01T12:00:00Z"
+                        },
+                        {
+                            "title": "Rengör handfatet",
+                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                            "completed": true,
+                            "dueDate": "2025-10-02T12:00:00Z"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "db77e75a-f00c-488c-8780-5ab36b6b240f",
+                    "title": "Städa köket",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    "color": "#FF5733",
+                    "starred": false,
+                    "lastTouched": "2025-03-02T12:00:00Z",
+                    "todos": [
+                        {
+                            "title": "Släng soporna",
+                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                            "completed": false,
+                            "dueDate": "2025-09-02T12:00:00Z"
+                        },
+                        {
+                            "title": "Gå med återvinningen",
+                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                            "completed": true,
+                            "dueDate": null
+                        },
+                        {
+                            "title": "Torka av ytorna",
+                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                            "completed": true,
+                            "dueDate": "2025-09-04T12:00:00Z"
+                        },
+                        {
+                            "title": "Töm och fyll diskmaskinen",
+                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                            "completed": true,
+                            "dueDate": null
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

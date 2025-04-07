@@ -65,3 +65,14 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+## Inklistrat
+
+```bash
+self.crypto.randomUUID()
+```
+
+
+https://github.com/Codemelia/basic-todo-app/blob/master/src/app/services/storage.service.ts
+https://github.com/Jojjeboy/doneit/tree/master/src/app

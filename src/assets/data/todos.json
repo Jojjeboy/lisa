@@ -1,0 +1,52 @@
+{
+    "todos": [
+      {
+        "uuid": "c7f7a096-1759-4667-9881-efd17f52902d",
+        "listUuid": "d0b2f747-af29-41eb-a78d-c02abd724342",
+        "title": "Buy groceries",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "completed": false,
+        "dueDate": "2025-10-01T12:00:00Z"
+      },
+      {
+        "uuid": "d5ffbe5f-5fee-4e65-9189-dd56b5bc2323",
+        "listUuid": "d0b2f747-af29-41eb-a78d-c02abd724342",
+        "title": "Clean the apartment",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "completed": true,
+        "dueDate": "2025-10-02T12:00:00Z"
+      },
+      {
+        "uuid": "10c272d1-4d21-4785-b324-71affe3bf7ae",
+        "listUuid": "db77e75a-f00c-488c-8780-5ab36b6b240f",
+        "title": "Take out the trash",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "completed": false,
+        "dueDate": "2025-09-02T12:00:00Z"
+      },
+      {
+        "uuid": "847353ea-bdc1-4989-83a3-a2799725f7d1",
+        "listUuid": "db77e75a-f00c-488c-8780-5ab36b6b240f",
+        "title": "Go out for a run",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "completed": true,
+        "dueDate": null
+      },
+      {
+        "uuid": "847353ea-bdc1-4989-83a3-r2799725f7d1",
+        "listUuid": "db77e75a-f00c-488c-8780-5ab36b6b240f",
+        "title": "Finish the report",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "completed": true,
+        "dueDate": null
+      },
+      {
+        "uuid": "847353ea-bdf1-4989-83a3-u2799725f7d1",
+        "listUuid": "db77e75a-f00c-488c-8780-5ab36b6b240f",
+        "title": "Leave stuff at the office",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "completed": true,
+        "dueDate": null
+      }
+    ]
+  }
