@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { List } from '../../interface/List.interface';
@@ -11,19 +10,16 @@ import { Category } from '../../interface/Category.interface';
 })
 export class LocalstorageService {
 
-  constructor(private httpClient: HttpClient) {
-    this.httpClient = httpClient;
-  }
 
   data!: Data;
+  categories!: Category[];
   category!: Category;
   todos: Todo[] = [];
-  categories!: Category;
   list!: List;// hold current List from storage
 
   // hold current Todos from storage
-  private CateogrySubject = new BehaviorSubject<Category>(this.getCategories())
-  categories$ = this.CateogrySubject.asObservable() // expose as observable
+  //private CateogrySubject = new BehaviorSubject<Category>(this.getCategories())
+  //categories$ = this.CateogrySubject.asObservable() // expose as observable
 
 
   // sending Todo to edit to to do form
@@ -70,12 +66,23 @@ export class LocalstorageService {
     }
 
     // get all categories from local storage
-    getCategories(): Category {
+    getCategories(): Category[] {
       let data:any = localStorage.getItem('lisa')
       if (data){
         data = JSON.parse(data);
-        this.category = data.categories;
+        this.categories = data.categories;
       }
+      return this.categories;
+    }
+
+
+    // get all categories from local storage
+    getCategory(categoryUUId: string): Category {
+      this.getData().categories.forEach(category => {
+        if(category.uuid === categoryUUId){
+          this.category = category; // set current category to the one with the same uuid
+        }
+      });
       return this.category;
     }
 
