@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Todo } from '../../interface/Todo.interface';
 import { LocalstorageService } from '../localstorage/localstorage.service';
+import { Data } from '../../interface/Data.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +16,21 @@ export class TodoService {
   }
 
 
-  getTodos(): any[] {
-    return this.localStorageService.getTodos();
+  getAllData(): Data {
+    return this.localStorageService.getData();
   }
 
-  addTodo(todo: Todo) {
-    this.localStorageService.saveTodo(todo);
+/*
+  getTodoList(uuid: string): Todo[] | null {
+    return this.localStorageService.getTodoList(uuid);
   }
+*/
+  /*
+  addTodo(todo: Todo) {
+    //this.localStorageService.saveTodo(todo);
+  }
+
+  */
 
   updateTodo(todo: Todo) {
 

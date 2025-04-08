@@ -1,9 +1,11 @@
 import { Todo } from './Todo.interface';
 
-export interface List<T> {
-    uuid: string;
-    Todo: Todo[];
-    title: string;
+export interface List {
+    uuid:        string;
+    title:       string;
     description: string;
-    currentPage: number;
+    color:       string;
+    starred:     boolean;
+    lastTouched: Date;
+    todos:       Todo[];
 }

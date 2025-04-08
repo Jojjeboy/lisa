@@ -8,10 +8,10 @@ import { PickListModule } from 'primeng/picklist';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { Divider } from 'primeng/divider';
 import { TagModule } from 'primeng/tag';
-import { Product, ProductService } from '../service/product.service';
 import { TodoService } from '../../service/todo/todo.service';
 import { Todo } from '../../interface/Todo.interface';
 import { ChipModule } from 'primeng/chip';
+import { Data } from '../../interface/Data.interface';
 
 
 @Component({
@@ -22,19 +22,13 @@ import { ChipModule } from 'primeng/chip';
     styles: `
         
     `,
-    providers: [ProductService]
+    providers: [TodoService]
 })
 export class Lists {
-    layout: 'list' | 'grid' = 'list';
-    options = ['list', 'grid'];
-    products: Product[] = [];
-    sourceCities: any[] = [];
-    targetCities: any[] = [];
-    orderCities: any[] = [];
-    todos: any;
-    constructor(private productService: ProductService, private todoService: TodoService) { }
+    data!: Data;
+
+    constructor(private todoService: TodoService) { }
     ngOnInit() {
-        this.productService.getProductsSmall().then((data) => (this.products = data.slice(0, 6)));
-        this.todos = this.todoService.getTodos();
+        this.data = this.todoService.getAllData();
     }
 }
