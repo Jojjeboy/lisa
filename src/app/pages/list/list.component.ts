@@ -1,11 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { List } from '../../interface/List.interface';
+import { Subscription } from 'rxjs';
+import { TodoService } from '../../service/todo/todo.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { TagModule } from 'primeng/tag';
+import { Divider } from 'primeng/divider';
+import { ChipModule } from 'primeng/chip';
+import { CheckboxModule } from 'primeng/checkbox';
+import { FormsModule }    from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-list',
-  imports: [],
+  imports: [CommonModule,  TagModule, Divider, ChipModule, CheckboxModule,FormsModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
-export class ListComponent {
+export class ListComponent implements OnInit {
+
+  list!: List;
+  dataObserveble!: Subscription;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private todoService: TodoService, // Assuming you have a TodoService to fetch data
+  ) {}
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      const listUuid = params['id'];
+      this.dataObserveble = this.todoService.getList(listUuid).subscribe(list => {
+        this.list = list; // Assuming you have a List interface defined somewhere
+        console.log(this.list); // Do something with the fetched category data
+      });
+    });
+
+
+  }
 
 }
