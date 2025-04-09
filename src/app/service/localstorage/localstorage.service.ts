@@ -141,6 +141,11 @@ export class LocalstorageService {
     }
 
 
+    addTodo(todoString: string){
+
+    }
+
+
     /*****************************************/
     
 

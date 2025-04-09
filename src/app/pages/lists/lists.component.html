@@ -3,11 +3,11 @@
         <div class="card mb-0">
             <div class="flex justify-between mt-4">
                 <div>
-                    <h4>{{ category.title }}</h4>
+                    <h4><a [routerLink]="['/pages/category/', category.uuid]">{{ category.title }}</a></h4>
                     <p-divider />
                     <div *ngFor="let list of category.lists" class="mt-7">
                         <div>
-                            <a href="/pages/lists/list/{{ list.uuid }}" class="">
+                            <a [routerLink]="['/pages/lists/list/', list.uuid]" class="">
                                 <h5>
                                     <i class="pi pi-bolt text-yellow-500" [ngStyle]="{'color': list.color }"></i> 
                                     {{ list.title }}

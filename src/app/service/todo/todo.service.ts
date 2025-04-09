@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { Todo } from '../../interface/Todo.interface';
 import { LocalstorageService } from '../localstorage/localstorage.service';
 import { Data } from '../../interface/Data.interface';
+import { Category } from '../../interface/Category.interface';
+import { List } from '../../interface/List.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +18,40 @@ export class TodoService {
   }
 
 
-  getAllData(): Data {
+  getData(): Data {
     return this.localStorageService.getData();
   }
+
+
+  getCategories(): Category[] {
+    return this.localStorageService.getCategories();
+  }
+
+  getCategory(categoryUUId: string): Category {
+    return this.localStorageService.getCategory(categoryUUId);
+  }
+
+  getLists(categoryUUId: string): List[] {
+    return this.localStorageService.getLists(categoryUUId);
+  }
+
+  getList(listUuid: string): List {
+    return this.localStorageService.getList(listUuid);
+  }
+
+  addTodo(Todo: Todo): void {
+    // 1. Ta emot Todo objektet och gör till sträng 
+    const todosString = JSON.stringify(Todo);
+    // 2. Spara i local storage
+    // 3. returnera att det är sparat
+    this.localStorageService.addTodo(todosString);
+
+  }
+
+
+
+
+
 
 /*
   getTodoList(uuid: string): Todo[] | null {

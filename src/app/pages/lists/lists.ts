@@ -12,16 +12,13 @@ import { TodoService } from '../../service/todo/todo.service';
 import { Todo } from '../../interface/Todo.interface';
 import { ChipModule } from 'primeng/chip';
 import { Data } from '../../interface/Data.interface';
-
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-lists',
     standalone: true,
-    imports: [CommonModule, DataViewModule, FormsModule, SelectButtonModule, PickListModule, OrderListModule, TagModule, ButtonModule, Divider, ChipModule],
-    templateUrl: './lists.component.html',
-    styles: `
-        
-    `,
+    imports: [CommonModule, DataViewModule, FormsModule, SelectButtonModule, PickListModule, OrderListModule, TagModule, ButtonModule, Divider, ChipModule, RouterModule],
+    templateUrl: './lists.component.html',  
     providers: [TodoService]
 })
 export class Lists {
@@ -29,6 +26,6 @@ export class Lists {
 
     constructor(private todoService: TodoService) { }
     ngOnInit() {
-        this.data = this.todoService.getAllData();
+        this.data = this.todoService.getData();
     }
 }
