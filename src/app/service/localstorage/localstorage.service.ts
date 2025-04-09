@@ -56,16 +56,27 @@ export class LocalstorageService {
 
   /************************************************************************ */
 
-    // get all data from local storage
+    /**
+     * 
+     * @returns Data
+     */
     getData(): Data {
       const data = localStorage.getItem('lisa')
       if (data){
-        this.data = JSON.parse(data);        
+        this.data = JSON.parse(data);  
+        this.categories = this.data.categories; // set categories to the ones in local storage      
       }
       return this.data;
     }
 
-    // get all categories from local storage
+
+    /******************** CATEGORY *********************/
+
+
+    /**
+     * 
+     * @returns Category[]
+     */
     getCategories(): Category[] {
       let data:any = localStorage.getItem('lisa')
       if (data){
@@ -76,16 +87,61 @@ export class LocalstorageService {
     }
 
 
-    // get all categories from local storage
+    /**
+     * 
+     * @param categoryUUId 
+     * @returns Category
+     */
     getCategory(categoryUUId: string): Category {
-      this.getData().categories.forEach(category => {
+      this.data.categories.forEach(category => {
         if(category.uuid === categoryUUId){
+          console.log(category);
           this.category = category; // set current category to the one with the same uuid
         }
       });
       return this.category;
     }
 
+
+    /*****************************************/
+
+
+    /******************** list *********************/
+
+
+    /**
+     * 
+     * @param categoryUUId
+     * @returns List[]
+     */
+    getLists(categoryUUId: string): List[] {
+      for (const category of this.categories) {
+        if (category.uuid === categoryUUId) {
+          return category.lists; // set current category to the one with the same uuid
+        }
+      }
+      return [];
+    }
+
+
+    /**
+     * 
+     * @param categoryUUId 
+     * @returns List
+     */
+    getList(listUuid: string): List {
+      for (const category of this.categories) {
+        for (const list of category.lists) {
+          if (list.uuid === listUuid) {
+            return list; // set current list to the one with the same uuid
+          }
+        }
+      }
+      return null as any; // Return null or an appropriate default value
+    }
+
+
+    /*****************************************/
     
 
 
