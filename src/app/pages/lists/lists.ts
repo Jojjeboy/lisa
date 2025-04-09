@@ -13,6 +13,7 @@ import { Todo } from '../../interface/Todo.interface';
 import { ChipModule } from 'primeng/chip';
 import { Data } from '../../interface/Data.interface';
 import { RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-lists',
@@ -23,9 +24,15 @@ import { RouterModule } from '@angular/router';
 })
 export class Lists {
     data!: Data;
+    dataObserveble!: Subscription;
 
     constructor(private todoService: TodoService) { }
     ngOnInit() {
-        this.data = this.todoService.getData();
+        //this.data = this.todoService.getData();
+
+        this.dataObserveble = this.todoService.getData().subscribe(data => {
+            this.data = data; // Assuming you have a List interface defined somewhere
+            console.log(this.data); // Do something with the fetched category data
+          });
     }
 }

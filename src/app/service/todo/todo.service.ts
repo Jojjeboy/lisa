@@ -18,25 +18,46 @@ export class TodoService {
   }
 
 
-  getData(): Data {
-    return this.localStorageService.getData();
+  getData(): Observable<Data>{
+    return new Observable<Data>(observer => {
+      const data =this.localStorageService.getData();
+      observer.next(data);
+      observer.complete();
+    })
   }
 
 
-  getCategories(): Category[] {
-    return this.localStorageService.getCategories();
+  getCategories(): Observable<Category[]> {
+    return new Observable<Category[]>(observer => {
+      const categories = this.localStorageService.getCategories();
+      observer.next(categories);
+      observer.complete();
+    })
+    //return this.localStorageService.getCategories();
   }
 
-  getCategory(categoryUUId: string): Category {
-    return this.localStorageService.getCategory(categoryUUId);
+  getCategory(categoryUUId: string): Observable<Category> {
+    return new Observable<Category>(observer => {
+      const category = this.localStorageService.getCategory(categoryUUId);
+      observer.next(category);
+      observer.complete();
+    })
   }
 
-  getLists(categoryUUId: string): List[] {
-    return this.localStorageService.getLists(categoryUUId);
+  getLists(categoryUUId: string): Observable<List[]> {
+    return new Observable<List[]>(observer => {
+    const lists = this.localStorageService.getLists(categoryUUId);
+      observer.next(lists);
+      observer.complete();
+    })
   }
 
-  getList(listUuid: string): List {
-    return this.localStorageService.getList(listUuid);
+  getList(listUuid: string): Observable<List>{
+    return new Observable<List>(observer => {
+      const list = this.localStorageService.getList(listUuid);
+      observer.next(list);
+      observer.complete();
+    });
   }
 
   addTodo(Todo: Todo): void {
