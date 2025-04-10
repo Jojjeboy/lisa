@@ -1,13 +1,15 @@
 <div class="grid mb-8">
+   
+
     <div class="col-span-12 lg:col-span-6 xl:col-span-3">
         <div class="card mb-0">
-            <div class="flex justify-between mt-4">
+            <div class="flex justify-between mt-2">
                 <div>
+                    <a [routerLink]="['/pages/lists/']"><i class="pi icon-flipped pi-reply" style="font-size: 1.5rem"></i></a>
                     <h4>{{ category.title }}</h4>
                     <p-divider />
                     <div *ngFor="let list of category.lists" class="mt-7">
-                        <div>
-                            <a href="/pages/lists/list/{{ list.uuid }}" class="">
+                        <div><a [routerLink]="['/pages/lists/list/', list.uuid, category.uuid]">
                                 <h5>
                                     <i class="pi pi-bolt text-yellow-500" [ngStyle]="{'color': list.color }"></i> 
                                     {{ list.title }}

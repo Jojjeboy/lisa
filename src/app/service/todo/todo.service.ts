@@ -60,6 +60,7 @@ export class TodoService {
     });
   }
 
+
   addTodo(Todo: Todo): void {
     // 1. Ta emot Todo objektet och gör till sträng 
     const todosString = JSON.stringify(Todo);

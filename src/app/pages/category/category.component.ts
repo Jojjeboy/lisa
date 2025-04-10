@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TodoService } from '../../service/todo/todo.service';
 import { CommonModule } from '@angular/common';
 import { TagModule } from 'primeng/tag';
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-category',
-  imports: [CommonModule,  TagModule, Divider, ChipModule],
+  imports: [CommonModule,  TagModule, Divider, ChipModule, RouterModule],
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss'
 })

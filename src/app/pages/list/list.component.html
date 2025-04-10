@@ -3,6 +3,9 @@
         <div class="card mb-0">
             <div class="flex justify-between mt-4">
                 <div>
+                    <a [routerLink]="['/pages/category/', categoryId]">
+                        <i class="pi icon-flipped pi-reply" style="font-size: 1.5rem"></i>
+                    </a>
                     <h4>{{ list.title }}</h4>
                     <p-divider />
                     <ul *ngFor="let todo of list.todos" class="mt-7">
