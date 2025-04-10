@@ -27,21 +27,12 @@ export class LocalstorageService {
   private editSubject = new BehaviorSubject<Todo | null>(null)
   edit$ = this.editSubject.asObservable()
 
-  /*
-  // add new Todo to existing Todo array
-  // add updated Todos to local storage
-  saveTodo(newTodo: Todo) {
-    this.todos = [ // add new Todo to existing Todo array
-      ...this.getAllTodoLists(),
-      newTodo
-    ]
-    localStorage.setItem('Todos', JSON.stringify(this.todos))
-    this.TodoSubject.next(this.todos) // notify all subscribers of new Todo array
-  }
-*/
   /************************************************************************ */
 
-
+constructor() {
+  // get Todos from local storage 
+  this.getData();
+}
 
   /**
    * 

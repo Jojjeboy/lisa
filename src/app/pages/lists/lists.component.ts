@@ -12,10 +12,10 @@ import { Subscription } from 'rxjs';
     selector: 'app-lists',
     standalone: true,
     imports: [CommonModule, TagModule, Divider, ChipModule, RouterModule],
-    templateUrl: './lists.component.html',  
+    templateUrl: './lists.component.html',
     providers: [TodoService]
 })
-export class Lists implements OnInit {
+export class ListsComponent implements OnInit {
     data!: Data;
     dataObserveble!: Subscription;
 
@@ -24,6 +24,6 @@ export class Lists implements OnInit {
         this.dataObserveble = this.todoService.getData().subscribe(data => {
             this.data = data; // Assuming you have a List interface defined somewhere
             console.log(this.data); // Do something with the fetched category data
-          });
+        });
     }
 }
