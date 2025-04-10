@@ -13,16 +13,14 @@
                     "lastTouched": "2025-04-02T12:00:00Z",
                     "todos": [
                         {
+                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
                             "title": "SITHS-kort",
-                            "description": "Packning för vanlig dag på mölndalskontoret",
-                            "completed": false,
-                            "dueDate": null
+                            "completed": false
                         },
                         {
+                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
                             "title": "Glasögon",
-                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                            "completed": true,
-                            "dueDate": null
+                            "completed": true
                         }
                     ]
                 },
@@ -35,28 +33,24 @@
                     "lastTouched": "2025-04-02T12:00:00Z",
                     "todos": [
                         {
+                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
                             "title": "Glasögon",
-                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                            "completed": false,
-                            "dueDate": "2025-09-02T12:00:00Z"
+                            "completed": false
                         },
                         {
+                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
                             "title": "SITHS-kort",
-                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                            "completed": true,
-                            "dueDate": null
+                            "completed": true
                         },
                         {
+                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
                             "title": "Matlåda",
-                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                            "completed": true,
-                            "dueDate": "2025-09-04T12:00:00Z"
+                            "completed": true
                         },
                         {
+                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
                             "title": "Leave stuff at the office",
-                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                            "completed": true,
-                            "dueDate": null
+                            "completed": true
                         }
                     ]
                 }
@@ -75,16 +69,14 @@
                     "lastTouched": "2025-03-02T12:00:00Z",
                     "todos": [
                         {
+                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
                             "title": "Rengör toastolen",
-                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                            "completed": false,
-                            "dueDate": "2025-10-01T12:00:00Z"
+                            "completed": false
                         },
                         {
+                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
                             "title": "Rengör handfatet",
-                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                            "completed": true,
-                            "dueDate": "2025-10-02T12:00:00Z"
+                            "completed": true
                         }
                     ]
                 },
@@ -97,28 +89,24 @@
                     "lastTouched": "2025-03-02T12:00:00Z",
                     "todos": [
                         {
+                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
                             "title": "Släng soporna",
-                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                            "completed": false,
-                            "dueDate": "2025-09-02T12:00:00Z"
+                            "completed": false
                         },
                         {
+                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
                             "title": "Gå med återvinningen",
-                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                            "completed": true,
-                            "dueDate": null
+                            "completed": true
                         },
                         {
+                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
                             "title": "Torka av ytorna",
-                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                            "completed": true,
-                            "dueDate": "2025-09-04T12:00:00Z"
+                            "completed": true
                         },
                         {
+                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
                             "title": "Töm och fyll diskmaskinen",
-                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                            "completed": true,
-                            "dueDate": null
+                            "completed": true
                         }
                     ]
                 }

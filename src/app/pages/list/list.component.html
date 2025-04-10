@@ -8,12 +8,25 @@
                     </a>
                     <h4>{{ list.title }}</h4>
                     <p-divider />
-                    <ul *ngFor="let todo of list.todos" class="mt-7">
+                    <ul>
                         <div>
-                                <li><p-checkbox [(ngModel)]="todo.completed" [binary]="true" />  &nbsp;  {{ todo.title }}</li>
+                            <li *ngFor="let todo of list.todos" class="mt-7">
+                                <label class="checkbox">
+                                    <input type="checkbox" class="checkbox__input" [ngModel]="todo.completed"
+                                        (ngModelChange)="todo.completed = $event" />
+                                    <span class="checkbox__inner"></span>
+                                    <span class="checkbox-text">{{ todo.title }}</span>
+                                </label>
+                            </li>
+                            <li class="mt-5">
+                                <input type="text" pInputText [(ngModel)]="newTodo.title" />
+                                <button type="button" pButton icon="pi pi-plus" class="p-button-sm p-button-rounded"
+                                    (click)="addTodo()" label="Lägg till">Lägg till</button>
+                            </li>
                         </div>
                     </ul>
-                    <div class="mt-6 font-small text-muted-color">Använd senast: {{ list.lastTouched | date:" d MMM, yyyy " }} </div>
+                    <div class="mt-6 font-small text-muted-color">Använd senast: {{ list.lastTouched | date:" d MMM,
+                        yyyy " }} </div>
                 </div>
             </div>
             <p-divider class="mt-4 mb-4" />
@@ -23,5 +36,3 @@
         </div>
     </div>
 </div>
-
-      

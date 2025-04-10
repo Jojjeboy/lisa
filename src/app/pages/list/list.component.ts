@@ -9,12 +9,14 @@ import { Divider } from 'primeng/divider';
 import { ChipModule } from 'primeng/chip';
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule }    from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
+import { Todo } from '../../interface/Todo.interface';
 
 
 
 @Component({
   selector: 'app-list',
-  imports: [CommonModule,  TagModule, Divider, ChipModule, CheckboxModule,FormsModule, RouterModule],
+  imports: [CommonModule,  TagModule, Divider, ChipModule, CheckboxModule,FormsModule, RouterModule, InputTextModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
@@ -23,6 +25,8 @@ export class ListComponent implements OnInit {
   list!: List;
   categoryId!: string;
   listObserveble!: Subscription;
+  newTodo: Todo = { uuid: '', title: '', completed: false };
+
   
   constructor(
     private route: ActivatedRoute,
@@ -39,6 +43,14 @@ export class ListComponent implements OnInit {
         console.log(this.list); // Do something with the fetched category data
       });
     });
+  }
+
+  toggleDone(todo: any) {
+    todo.completed = !todo.completed;
+  }
+
+  addTodo() {
+    this.list.todos.push({ uuid: self.crypto.randomUUID(), title: 'adasd', completed: false });
   }
 
 }
