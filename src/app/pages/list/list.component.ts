@@ -11,12 +11,22 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule }    from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { Todo } from '../../interface/Todo.interface';
+import { ButtonModule } from 'primeng/button';
 
 
 
 @Component({
   selector: 'app-list',
-  imports: [CommonModule,  TagModule, Divider, ChipModule, CheckboxModule,FormsModule, RouterModule, InputTextModule],
+  imports: [
+    CommonModule,
+    TagModule, 
+    Divider, 
+    ChipModule, 
+    CheckboxModule,
+    FormsModule, 
+    RouterModule, 
+    InputTextModule,
+    ButtonModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
@@ -31,7 +41,7 @@ export class ListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private todoService: TodoService, // Assuming you have a TodoService to fetch data
+    private todoService: TodoService
   ) {}
 
   ngOnInit() {
@@ -53,4 +63,12 @@ export class ListComponent implements OnInit {
     this.list.todos.push({ uuid: self.crypto.randomUUID(), title: 'adasd', completed: false });
   }
 
+
+  saveTodo() {
+    this.todoService.updateList(this.list).subscribe(() => {
+      console.log('Todo updated successfully!');
+    }, error => {
+      console.error('Error updating todo:', error);
+    });
+  } 
 }

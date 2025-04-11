@@ -132,6 +132,18 @@ constructor() {
     }
 
 
+    updateList(list: List): void {
+      for (const category of this.categories) {
+        for (const listItem of category.lists) {
+          if (listItem.uuid === list.uuid) {
+            listItem.todos = list.todos; // set current list to the one with the same uuid
+          }
+        }
+      }
+      localStorage.setItem('lisa', JSON.stringify(this.data)); // set updated data to local storage
+    }
+
+
     addTodo(todoString: string){
 
     }

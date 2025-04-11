@@ -71,6 +71,15 @@ export class TodoService {
   }
 
 
+  updateList(list: List): Observable<void> {
+    return new Observable<void>(observer => {
+      this.localStorageService.updateList(list);
+      observer.next();
+      observer.complete();
+    });
+  }
+
+
 
 
 
@@ -87,14 +96,7 @@ export class TodoService {
 
   */
 
-  updateTodo(todo: Todo) {
 
-  }
-
-  toggleTodo(todo: Todo) {
-    todo.completed = !todo.completed;
-    this.updateTodo(todo);
-  }
 
 
 }
