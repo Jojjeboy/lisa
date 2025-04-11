@@ -78,8 +78,8 @@ export class ListComponent implements OnInit {
 
 
 
-  toggleDone(todo: any) {
-    todo.completed = !todo.completed;
+  toggleDone() {
+    this.saveTodo();
   }
 
   addTodo() {
@@ -100,6 +100,15 @@ export class ListComponent implements OnInit {
       console.error('Error updating todo:', error);
     });
   } 
+
+
+  clear(){
+    this.todoForm.reset(); // Clear the form
+    this.list.todos.forEach(todo => {
+      todo.completed = false; // Set all todos to not completed
+    });
+    this.saveTodo(); // Save the updated list to local storage
+  }
 
 
 

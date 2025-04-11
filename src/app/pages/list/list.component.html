@@ -12,7 +12,7 @@
                         <div>
                             <li *ngFor="let todo of list.todos" class="mt-7">
                                 <label class="checkbox">
-                                    <input type="checkbox" class="checkbox__input" [ngModel]="todo.completed"
+                                    <input type="checkbox" (change)="toggleDone()" class="checkbox__input" [ngModel]="todo.completed"
                                         (ngModelChange)="todo.completed = $event" />
                                     <span class="checkbox__inner"></span>
                                     <span class="checkbox-text">{{ todo.title }}</span>
@@ -27,8 +27,8 @@
                                     <input type="text" formControlName="title" pInputText />
                                     <p-button icon="pi pi-plus" label="Spara" (click)="addTodo()" />
                                 </form>
-
                             </li>
+                            <p-button icon="pi pi-clear" label="Rensa" (click)="clear()" />
                         </div>
                     </ul>
                     <div class="mt-6 font-small text-muted-color">Använd senast: {{ list.lastTouched | date:" d MMM,
