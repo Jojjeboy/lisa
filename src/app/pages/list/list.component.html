@@ -19,8 +19,14 @@
                                 </label>
                             </li>
                             <li class="mt-5">
-                                <input type="text" pInputText [(ngModel)]="newTodo.title" />
-                                <p-button icon="pi pi-plus" label="Submit" (click)="addTodo()" />
+                                <form [formGroup]="todoForm" (ngSubmit)="addTodo()">
+                                    <label class="checkbox">
+                                        <input type="checkbox" class="checkbox__input" formControlName="completed" />
+
+                                    </label>
+                                    <input type="text" formControlName="title" pInputText />
+                                    <p-button icon="pi pi-plus" label="Spara" (click)="addTodo()" />
+                                </form>
 
                             </li>
                         </div>

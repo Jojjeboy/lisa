@@ -8,10 +8,11 @@ import { TagModule } from 'primeng/tag';
 import { Divider } from 'primeng/divider';
 import { ChipModule } from 'primeng/chip';
 import { CheckboxModule } from 'primeng/checkbox';
-import { FormsModule }    from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }    from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { Todo } from '../../interface/Todo.interface';
 import { ButtonModule } from 'primeng/button';
+import { FormBuilder, Validators } from '@angular/forms';
 
 
 
@@ -26,41 +27,69 @@ import { ButtonModule } from 'primeng/button';
     FormsModule, 
     RouterModule, 
     InputTextModule,
-    ButtonModule],
+    ButtonModule, 
+    ReactiveFormsModule],
   templateUrl: './list.component.html',
-  styleUrl: './list.component.scss'
+  styleUrl: './list.component.scss',
+  standalone: true
 })
 export class ListComponent implements OnInit {
+
+  constructor(
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private todoService: TodoService
+  ) {}
+
 
   list!: List;
   categoryId!: string;
   listObserveble!: Subscription;
   newTodo: Todo = { uuid: '', title: '', completed: false };
+  todoForm: any; // FormGroup for the todo form
+
 
   
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private todoService: TodoService
-  ) {}
+  
+
+  
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       const listUuid = params['id'];
       this.categoryId = params['categoryId'];
-      this.listObserveble = this.todoService.getList(listUuid).subscribe(list => {
-        this.list = list; // Assuming you have a List interface defined somewhere
-        console.log(this.list); // Do something with the fetched category data
-      });
+      this.list = this.getList(listUuid); // Fetch the list using the UUID from the route params
+    });
+    this.todoForm = this.fb.group({
+      title: ['', Validators.required],
+      completed: [false]
     });
   }
+
+
+
+
+  getList(listUuid: string): List {
+    this.listObserveble = this.todoService.getList(listUuid).subscribe(list => {
+      this.list = list; // Assuming you have a List interface defined somewhere
+    });
+    return this.list;
+  }
+
+
 
   toggleDone(todo: any) {
     todo.completed = !todo.completed;
   }
 
   addTodo() {
-    this.list.todos.push({ uuid: self.crypto.randomUUID(), title: 'adasd', completed: false });
+    this.list.todos.push(
+      { 
+        uuid: self.crypto.randomUUID(), 
+        title: this.todoForm.value.title,
+        completed: false }
+      );
+    this.saveTodo();
   }
 
 
@@ -71,4 +100,14 @@ export class ListComponent implements OnInit {
       console.error('Error updating todo:', error);
     });
   } 
+
+
+
+  ngOnDestroy() {
+    if (this.listObserveble) {
+      this.listObserveble.unsubscribe();
+    }
+  }
+
+
 }
