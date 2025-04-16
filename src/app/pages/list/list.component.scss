@@ -1,4 +1,4 @@
-.checkbox {
+/*.checkbox {
     position: relative;
     overflow: hidden;
 }
@@ -31,4 +31,43 @@
     left: 15px;
     bottom: 5px;
     font-size: 1.2em;
+}
+*/
+
+
+.checkbox-list-container {
+    
+    display: flex; 
+
+    >div{
+        flex: 1;
+        //background: #52C6C4;
+        &:nth-child(2){
+            flex: 10;
+            //background-color: pink;
+        }
+    }
+}
+
+
+form.list-add-container{
+    display: flex; 
+    >div{
+        flex: 10;
+        input{
+            width: 100%;
+            border-radius: 3px 0 0 3px;
+        }
+        
+        &:nth-child(2){
+            flex: 1;
+            background-color: var(--p-button-primary-background);
+            border-radius: 0 3px 3px 0;
+            button,
+            pripple {
+                width: 100%;
+                background-color: chartreuse;
+            }
+        }
+    }
 }

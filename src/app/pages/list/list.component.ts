@@ -8,11 +8,12 @@ import { TagModule } from 'primeng/tag';
 import { Divider } from 'primeng/divider';
 import { ChipModule } from 'primeng/chip';
 import { CheckboxModule } from 'primeng/checkbox';
-import { FormsModule, ReactiveFormsModule }    from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { Todo } from '../../interface/Todo.interface';
 import { ButtonModule } from 'primeng/button';
 import { FormBuilder, Validators } from '@angular/forms';
+import { DialogModule } from 'primeng/dialog';
 
 
 
@@ -20,15 +21,16 @@ import { FormBuilder, Validators } from '@angular/forms';
   selector: 'app-list',
   imports: [
     CommonModule,
-    TagModule, 
-    Divider, 
-    ChipModule, 
+    TagModule,
+    Divider,
+    ChipModule,
     CheckboxModule,
-    FormsModule, 
-    RouterModule, 
+    FormsModule,
+    RouterModule,
     InputTextModule,
-    ButtonModule, 
-    ReactiveFormsModule],
+    ButtonModule,
+    ReactiveFormsModule,
+    DialogModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
   standalone: true
@@ -39,7 +41,7 @@ export class ListComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private todoService: TodoService
-  ) {}
+  ) { }
 
 
   list!: List;
@@ -47,12 +49,17 @@ export class ListComponent implements OnInit {
   listObserveble!: Subscription;
   newTodo: Todo = { uuid: '', title: '', completed: false };
   todoForm: any; // FormGroup for the todo form
+  todoEditForm: any; // FormGroup for the todo form
+  displayPosition: boolean = false;
+  position!: string;
+  visible: boolean = false;
+  todo: Todo = { uuid: '', title: '', completed: false };
 
 
-  
-  
 
-  
+
+
+
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -63,6 +70,10 @@ export class ListComponent implements OnInit {
     this.todoForm = this.fb.group({
       title: ['', Validators.required],
       completed: [false]
+    });
+
+    this.todoEditForm = this.fb.group({
+      title: ['', Validators.required]
     });
   }
 
@@ -84,31 +95,70 @@ export class ListComponent implements OnInit {
 
   addTodo() {
     this.list.todos.push(
-      { 
-        uuid: self.crypto.randomUUID(), 
+      {
+        uuid: self.crypto.randomUUID(),
         title: this.todoForm.value.title,
-        completed: false }
-      );
+        completed: false
+      }
+    );
     this.saveTodo();
   }
 
 
   saveTodo() {
+    this.list.lastTouched = new Date(); // Update the last touched date
     this.todoService.updateList(this.list).subscribe(() => {
       console.log('Todo updated successfully!');
     }, error => {
       console.error('Error updating todo:', error);
     });
-  } 
+  }
 
 
-  clear(){
+  clear() {
     this.todoForm.reset(); // Clear the form
     this.list.todos.forEach(todo => {
       todo.completed = false; // Set all todos to not completed
     });
+    
     this.saveTodo(); // Save the updated list to local storage
   }
+
+  deleteTodo(todo: Todo) {
+    this.list.todos = this.list.todos.filter(t => t.uuid !== todo.uuid);
+    this.visible = false;
+    this.saveTodo();
+  }
+
+  showPositionDialog(position: string) {
+    this.position = position;
+    this.displayPosition = true;
+  }
+
+
+  showDialog(todo: Todo) {
+    this.todo = todo;
+    this.visible = true;
+    console.table(todo);
+  }
+
+
+  updateTodo(todo: Todo) {
+    const index = this.list.todos.findIndex(t => t.uuid === this.todo.uuid);
+    if (index !== -1) {
+      this.list.todos[index] = { ...this.todo };
+      this.saveTodo();
+    }
+    this.visible = false;
+  }
+
+
+  discard() {
+    this.visible = false;
+  }
+
+  
+
 
 
 

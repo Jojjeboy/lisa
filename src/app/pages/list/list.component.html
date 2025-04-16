@@ -1,38 +1,44 @@
 <div class="grid mb-8">
     <div class="col-span-12 lg:col-span-6 xl:col-span-3">
         <div class="card mb-0">
-            <div class="flex justify-between mt-4">
+            <div class="">
                 <div>
                     <a [routerLink]="['/pages/category/', categoryId]">
                         <i class="pi icon-flipped pi-reply" style="font-size: 1.5rem"></i>
                     </a>
                     <h4>{{ list.title }}</h4>
                     <p-divider />
-                    <ul>
+                    <div class="checkbox-list-container" *ngFor="let todo of list.todos">
                         <div>
-                            <li *ngFor="let todo of list.todos" class="mt-7">
-                                <label class="checkbox">
-                                    <input type="checkbox" (change)="toggleDone()" class="checkbox__input" [ngModel]="todo.completed"
-                                        (ngModelChange)="todo.completed = $event" />
-                                    <span class="checkbox__inner"></span>
-                                    <span class="checkbox-text">{{ todo.title }}</span>
-                                </label>
-                            </li>
-                            <li class="mt-5">
-                                <form [formGroup]="todoForm" (ngSubmit)="addTodo()">
-                                    <label class="checkbox">
-                                        <input type="checkbox" class="checkbox__input" formControlName="completed" />
-
-                                    </label>
-                                    <input type="text" formControlName="title" pInputText />
-                                    <p-button icon="pi pi-plus" label="Spara" (click)="addTodo()" />
-                                </form>
-                            </li>
-                            <p-button icon="pi pi-clear" label="Rensa" (click)="clear()" />
+                            <label>
+                                <input type="checkbox" (change)="toggleDone()" [ngModel]="todo.completed"
+                                    (ngModelChange)="todo.completed = $event" />
+                            </label>
                         </div>
-                    </ul>
-                    <div class="mt-6 font-small text-muted-color">Använd senast: {{ list.lastTouched | date:" d MMM,
-                        yyyy " }} </div>
+                        <div><span class="checkbox__inner"></span>
+                            <span class="checkbox-text">{{ todo.title }}</span>
+                        </div>
+                        <div>
+                            <p-button icon="pi pi-pencil" (click)="showDialog(todo)" aria-label="Save" />
+
+                        </div>
+                    </div>
+
+                    <form [formGroup]="todoForm" (ngSubmit)="addTodo()" class="list-add-container mt-4">
+                        <div class="input-container">
+                            <input type="text" placeholder="Skriv text..." formControlName="title" pInputText />
+                        </div>
+                        <div class="button-container">
+                            <p-button icon="pi pi-plus" label="Spara" (click)="addTodo()" />
+                        </div>
+                    </form>
+                    <p-divider />
+                    <p-button icon="pi pi-clear" label="Rensa" placeholder="asdasd" (click)="clear()" />
+
+
+                    <div class="mt-6 font-small">Uppdaterad
+                        senast: <span class="text-muted-color"> {{ list.lastTouched | date:"HH:mm - d MMM,
+                        yyyy " }} </span></div>
                 </div>
             </div>
             <p-divider class="mt-4 mb-4" />
@@ -42,3 +48,22 @@
         </div>
     </div>
 </div>
+
+
+<p-dialog header="Uppdatera info" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+
+    <div class="flex items-center gap-4 mb-4">
+        <label for="title" class="font-semibold w-24">Titel</label>
+        <input pInputText id="title" [(ngModel)]="todo.title" class="flex-auto" autocomplete="off" />
+    </div>
+
+    <div class="">
+            <div class="flex justify-end">
+            <p-button label="Radera" class="pr-20" severity="danger" (click)="deleteTodo(todo)" />
+            <p-button label="Ångra" class="pr-2 pl-16" severity="secondary" (click)="discard()" />
+            <p-button label="Spara" (click)="updateTodo(todo)" />
+        </div>
+    </div>
+</p-dialog>
+
+
