@@ -7,23 +7,59 @@ import { ChipModule } from 'primeng/chip';
 import { Data } from '../../interface/Data.interface';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { DialogModule } from 'primeng/dialog';
+import { List } from '../../interface/List.interface';
+import { FormBuilder, Validators } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
     selector: 'app-lists',
     standalone: true,
-    imports: [CommonModule, TagModule, Divider, ChipModule, RouterModule],
-    templateUrl: './lists.component.html',
-    providers: [TodoService]
+    imports: [
+        CommonModule,
+            TagModule,
+            Divider,
+            ChipModule,
+            FormsModule,
+            RouterModule,
+            InputTextModule,
+            ButtonModule,
+            ReactiveFormsModule,
+            DialogModule],
+    templateUrl: './lists.component.html'
 })
 export class ListsComponent implements OnInit {
     data!: Data;
+    list!: List;
+    listForm: any;
     dataObserveble!: Subscription;
+    position!: string;
+    visible: boolean = false;
 
-    constructor(private todoService: TodoService) { }
+    constructor(
+        private todoService: TodoService,
+        private fb: FormBuilder) {}
+
     ngOnInit() {
         this.dataObserveble = this.todoService.getData().subscribe(data => {
             this.data = data; // Assuming you have a List interface defined somewhere
             console.log(this.data); // Do something with the fetched category data
         });
+
+        this.listForm = this.fb.group({
+              title: ['', Validators.required],
+              describtion: ['', Validators.required]
+            });
+    }
+
+    showDialog(){
+        this.visible = true;
+    }
+
+    addList() {
+        //this.todoService.addList({ uuid: '', title: '', todos: [] });
     }
 }
