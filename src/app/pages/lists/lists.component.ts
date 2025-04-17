@@ -11,9 +11,13 @@ import { DialogModule } from 'primeng/dialog';
 import { List } from '../../interface/List.interface';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { TextareaModule } from 'primeng/textarea';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { ColorPickerModule } from 'primeng/colorpicker';
+
+
 
 @Component({
     selector: 'app-lists',
@@ -28,7 +32,10 @@ import { InputTextModule } from 'primeng/inputtext';
             InputTextModule,
             ButtonModule,
             ReactiveFormsModule,
-            DialogModule],
+            DialogModule, 
+            TextareaModule,
+            FloatLabelModule,
+            ColorPickerModule],
     templateUrl: './lists.component.html'
 })
 export class ListsComponent implements OnInit {
@@ -51,7 +58,8 @@ export class ListsComponent implements OnInit {
 
         this.listForm = this.fb.group({
               title: ['', Validators.required],
-              describtion: ['', Validators.required]
+              describtion: ['', Validators.required],
+              color: ['#ffffff', Validators.required], 
             });
     }
 
