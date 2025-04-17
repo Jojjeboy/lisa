@@ -33,18 +33,16 @@
                         </div>
                     </form>
                     <p-divider />
-                    <p-button icon="pi pi-clear" label="Rensa" placeholder="asdasd" (click)="clear()" />
-
-
-                    <div class="mt-6 font-small">Uppdaterad
+                    <p-button [disabled]="shouldBeDisabled()" icon="pi pi-check" severity="secondary" label="Avmarkera alla" (click)="clear()" />
+                    
+                    
+                    <p-divider class="mt-4 mb-4" />
+                    <div class="mt-6 font-small">Listan uppdaterades
                         senast: <span class="text-muted-color"> {{ list.lastTouched | date:"HH:mm - d MMM,
                         yyyy " }} </span></div>
                 </div>
             </div>
-            <p-divider class="mt-4 mb-4" />
-            <p>
-                <a href="#" class="text-primary font-medium hover:underline">Lägg till i lista</a>
-            </p>
+            
         </div>
     </div>
 </div>

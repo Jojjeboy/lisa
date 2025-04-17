@@ -151,6 +151,15 @@ export class ListComponent implements OnInit {
     this.todo.title = this.todoOriginalTitle;
   }
 
+  shouldBeDisabled() {
+    for (const todo of this.list.todos) {
+      if (todo.completed) {
+        return false;
+      }
+    }
+    return true;
+  }
+
 
 
   ngOnDestroy() {
