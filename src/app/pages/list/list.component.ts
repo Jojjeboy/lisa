@@ -37,11 +37,7 @@ import { DialogModule } from 'primeng/dialog';
 })
 export class ListComponent implements OnInit {
 
-  constructor(
-    private route: ActivatedRoute,
-    private fb: FormBuilder,
-    private todoService: TodoService
-  ) { }
+  
 
 
   list!: List;
@@ -49,17 +45,18 @@ export class ListComponent implements OnInit {
   listObserveble!: Subscription;
   newTodo: Todo = { uuid: '', title: '', completed: false };
   todoForm: any; // FormGroup for the todo form
-  todoEditForm: any; // FormGroup for the todo form
+  todoOriginalTitle!: string; // FormGroup for the todo form
   displayPosition: boolean = false;
   position!: string;
   visible: boolean = false;
   todo: Todo = { uuid: '', title: '', completed: false };
+  
 
-
-
-
-
-
+  constructor(
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private todoService: TodoService
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -70,10 +67,6 @@ export class ListComponent implements OnInit {
     this.todoForm = this.fb.group({
       title: ['', Validators.required],
       completed: [false]
-    });
-
-    this.todoEditForm = this.fb.group({
-      title: ['', Validators.required]
     });
   }
 
@@ -138,8 +131,8 @@ export class ListComponent implements OnInit {
 
   showDialog(todo: Todo) {
     this.todo = todo;
+    this.todoOriginalTitle = todo.title;
     this.visible = true;
-    console.table(todo);
   }
 
 
@@ -155,10 +148,8 @@ export class ListComponent implements OnInit {
 
   discard() {
     this.visible = false;
+    this.todo.title = this.todoOriginalTitle;
   }
-
-  
-
 
 
 
