@@ -15,6 +15,7 @@ import { ButtonModule } from 'primeng/button';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { AccordionModule } from 'primeng/accordion';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 
 
@@ -32,7 +33,8 @@ import { AccordionModule } from 'primeng/accordion';
     ButtonModule,
     ReactiveFormsModule,
     DialogModule,
-    AccordionModule],
+    AccordionModule,
+    FloatLabelModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
   standalone: true
@@ -47,17 +49,21 @@ export class ListComponent implements OnInit {
   listObserveble!: Subscription;
   newTodo: Todo = { uuid: '', title: '', completed: false };
   todoForm: any; // FormGroup for the todo form
+  listForm: any; // FormGroup for the list form
   todoOriginalTitle!: string; // FormGroup for the todo form
+  originalList!: List; 
   displayPosition: boolean = false;
   position!: string;
-  visible: boolean = false;
+  editTodoDialogvisible: boolean = false;
+  listEditDialogvisible: boolean = false;
   todo: Todo = { uuid: '', title: '', completed: false };
 
 
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private todoService: TodoService
+    private todoService: TodoService,
+    private router: Router // Assuming you have a TodoService to fetch data
   ) { }
 
   ngOnInit() {
@@ -66,10 +72,12 @@ export class ListComponent implements OnInit {
       this.categoryId = params['categoryId'];
       this.list = this.getList(listUuid); // Fetch the list using the UUID from the route params
     });
+
     this.todoForm = this.fb.group({
       title: ['', Validators.required],
       completed: [false]
     });
+
   }
 
 
@@ -122,7 +130,7 @@ export class ListComponent implements OnInit {
 
   deleteTodo(todo: Todo) {
     this.list.todos = this.list.todos.filter(t => t.uuid !== todo.uuid);
-    this.visible = false;
+    this.editTodoDialogvisible = false;
     this.saveTodo();
   }
 
@@ -132,10 +140,16 @@ export class ListComponent implements OnInit {
   }
 
 
-  showDialog(todo: Todo) {
+  showEditTodoDialog(todo: Todo) {
     this.todo = todo;
     this.todoOriginalTitle = todo.title;
-    this.visible = true;
+    this.editTodoDialogvisible = true;
+  }
+
+
+  showEditListDialog() {
+    this.originalList = {...this.list};
+    this.listEditDialogvisible = true;
   }
 
 
@@ -145,13 +159,27 @@ export class ListComponent implements OnInit {
       this.list.todos[index] = { ...this.todo };
       this.saveTodo();
     }
-    this.visible = false;
+    this.editTodoDialogvisible = false;
+  }
+
+  updateList() {
+    this.todoService.updateList(this.list).subscribe(() => {
+      console.log('List updated successfully!');
+      this.listEditDialogvisible = false;
+    }, error => {
+      console.error('Error updating list:', error);
+    });
   }
 
 
-  discard() {
-    this.visible = false;
+  discardTodoEdit() {
+    this.editTodoDialogvisible = false;
     this.todo.title = this.todoOriginalTitle;
+  }
+
+  discardListEdit() {
+    this.list = this.originalList;
+    this.listEditDialogvisible = false;
   }
 
   shouldBeDisabled() {
@@ -161,6 +189,19 @@ export class ListComponent implements OnInit {
       }
     }
     return true;
+  }
+
+  deleteList() {
+    this.todoService.deleteList(this.list.uuid).subscribe(() => {
+      console.log('List deleted successfully!');
+    });
+
+    this.router.navigate(['/pages/category', this.categoryId]);
+  }
+
+
+  generateRandomColor() {
+    return '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
   }
 
 

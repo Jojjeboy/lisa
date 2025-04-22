@@ -23,7 +23,7 @@
                             <span class="checkbox-text">{{ todo.title }}</span>
                         </div>
                         <div>
-                            <p-button icon="pi pi-pencil" (click)="showDialog(todo)" aria-label="Save" />
+                            <p-button icon="pi pi-pencil" (click)="showEditTodoDialog(todo)" aria-label="Save" />
                         </div>
                     </div>
 
@@ -36,36 +36,36 @@
                         </div>
                     </form>
                     <p-divider />
-                    
-                    <p-accordion value="1">
+
+                    <p-accordion value="0">
                         <p-accordion-panel value="0">
                             <p-accordion-header>Hantera listan</p-accordion-header>
-                            <p-accordion-content>
+                            <p-accordion-content style="padding-left: 0;">
                                 <div style="display: flex; justify-content: space-between; align-content: flex-start;">
                                     <div>
                                         <p-button [disabled]="shouldBeDisabled()" icon="pi pi-check" severity="success"
                                             label="Rensa" (click)="clear()" />
                                     </div>
                                     <div>
-                                        <p-button [disabled]="shouldBeDisabled()" icon="pi pi-pencil" severity="warn"
-                                            label="Redigera" (click)="clear()" />
+                                        <p-button icon="pi pi-pencil" severity="warn" label="Redigera"
+                                            (click)="showEditListDialog()" />
                                     </div>
                                     <div>
-                                        <p-button [disabled]="shouldBeDisabled()" icon="pi pi-trash" severity="danger"
-                                            label="Radera" (click)="clear()" />
+                                        <p-button icon="pi pi-trash" severity="danger" label="Radera"
+                                            (click)="deleteList()" />
                                     </div>
                                 </div>
                             </p-accordion-content>
                         </p-accordion-panel>
-                    
-                        
+
+
                     </p-accordion>
-                    
-                    
-                    
+
+
+
 
                 </div>
-                
+
 
                 <div class="mt-6 font-small">Listan uppdaterades
                     senast: <span class="text-muted-color"> {{ list.lastTouched | date:"HH:mm - d MMM,
@@ -76,7 +76,7 @@
 </div>
 
 
-<p-dialog header="Uppdatera info" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+<p-dialog header="Uppdatera todo" [modal]="true" [(visible)]="editTodoDialogvisible" [style]="{ width: '25rem' }">
 
     <div class="flex items-center gap-4 mb-4">
         <label for="title" class="font-semibold w-24">Titel</label>
@@ -86,8 +86,35 @@
     <div class="">
         <div class="flex justify-end">
             <p-button label="Radera" class="pr-20" severity="danger" (click)="deleteTodo(todo)" />
-            <p-button label="Ångra" class="pr-2 pl-16" severity="secondary" (click)="discard()" />
+            <p-button label="Ångra" class="pr-2 pl-16" severity="secondary" (click)="discardTodoEdit()" />
             <p-button label="Spara" (click)="updateTodo(todo)" />
+        </div>
+    </div>
+</p-dialog>
+
+
+
+
+
+<p-dialog header="Uppdatera lista" [modal]="true" [(visible)]="listEditDialogvisible" [style]="{ width: '25rem' }">
+
+    <div class="flex items-center gap-4 mb-4">
+        <label for="title" class="font-semibold w-24">Titel</label>
+        <input pInputText id="title" [(ngModel)]="list.title" class="flex-auto" autocomplete="off" />
+    </div>
+    <div class="text-area-container">
+        <p-floatlabel variant="in">
+            <textarea pTextarea id="over_label" [(ngModel)]="list.description"  rows="5" cols="30" style="resize: none"
+                class="h-full"></textarea>
+            <label for="over_label">Beskrivning</label>
+        </p-floatlabel>
+    </div>
+
+    <div class="">
+        <div class="flex justify-end">
+            <p-button label="Radera" class="pr-20" severity="danger" (click)="deleteList()" />
+            <p-button label="Ångra" class="pr-2 pl-16" severity="secondary" (click)="discardListEdit()" />
+            <p-button label="Spara" (click)="updateList()" />
         </div>
     </div>
 </p-dialog>
