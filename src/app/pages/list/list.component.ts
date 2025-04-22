@@ -14,6 +14,7 @@ import { Todo } from '../../interface/Todo.interface';
 import { ButtonModule } from 'primeng/button';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
+import { AccordionModule } from 'primeng/accordion';
 
 
 
@@ -30,7 +31,8 @@ import { DialogModule } from 'primeng/dialog';
     InputTextModule,
     ButtonModule,
     ReactiveFormsModule,
-    DialogModule],
+    DialogModule,
+    AccordionModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
   standalone: true
