@@ -105,6 +105,7 @@ export class ListComponent implements OnInit {
     }, error => {
       console.error('Error updating todo:', error);
     });
+    this.todoForm.reset();
   }
 
 

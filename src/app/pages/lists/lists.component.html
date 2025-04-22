@@ -29,7 +29,7 @@
             </div>
             <p-divider class="mt-4" />
             <p>
-                <p-button icon="pi pi-plus" label="Lägg till lista" (click)="showDialog()" aria-label="Save" />
+                <p-button icon="pi pi-plus" label="Lägg till lista" (click)="showDialog(category.uuid)" aria-label="Save" />
             </p>
         </div>
     </div>
@@ -40,18 +40,17 @@
     <div class="flex items-center gap-4 mb-4">
         <form [formGroup]="listForm" (ngSubmit)="addList()" class="list-add-container mt-4">
             <div class="input-container">
-                <input type="text" placeholder="Skriv text..." formControlName="title" pInputText />
+                <input type="text" placeholder="Namn på listan" formControlName="title" pInputText />
             </div>
             <div class="text-area-container">
-                <p-floatlabel variant="on">
+                <p-floatlabel variant="in">
                     <textarea pTextarea id="over_label" formControlName="description" rows="5" cols="30" style="resize: none" class="h-full"></textarea>
                     <label for="over_label">Beskrivning</label>
                 </p-floatlabel>
             </div>
             <div class="color-container">
                 <p-floatlabel>
-                    <p-colorpicker id="color" formControlName="color" inline="true" inputId="cp-hex" />
-                    <label for="color">Färg</label>
+                    <p-colorpicker id="color" formControlName="color" inputId="cp-hex" />
                 </p-floatlabel>
             </div>
             <div class="button-container">

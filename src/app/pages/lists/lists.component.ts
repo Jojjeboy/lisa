@@ -45,29 +45,37 @@ export class ListsComponent implements OnInit {
     dataObserveble!: Subscription;
     position!: string;
     visible: boolean = false;
+    categoryUuid!: string;
 
     constructor(
         private todoService: TodoService,
         private fb: FormBuilder) {}
 
     ngOnInit() {
+        //this.data = this.todoService.getData(); 
         this.dataObserveble = this.todoService.getData().subscribe(data => {
             this.data = data; // Assuming you have a List interface defined somewhere
-            console.log(this.data); // Do something with the fetched category data
         });
-
+        
+        console.log(this.data); // Do something with the fetched category data
+        
         this.listForm = this.fb.group({
               title: ['', Validators.required],
               describtion: ['', Validators.required],
-              color: ['#ffffff', Validators.required], 
+              color: ['#e61ee6', Validators.required], 
             });
     }
 
-    showDialog(){
+    showDialog(categoryUuid: string){
+        this.categoryUuid = categoryUuid;
         this.visible = true;
     }
 
     addList() {
+        console.log(this.categoryUuid);
+
+        //this.data.categories.forEach()
+
         //this.todoService.addList({ uuid: '', title: '', todos: [] });
     }
 }
