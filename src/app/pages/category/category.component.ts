@@ -7,33 +7,102 @@ import { Divider } from 'primeng/divider';
 import { ChipModule } from 'primeng/chip';
 import { Category } from '../../interface/Category.interface';
 import { Subscription } from 'rxjs';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { TextareaModule } from 'primeng/textarea';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { ColorPickerModule } from 'primeng/colorpicker';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { List } from '../../interface/List.interface';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-category',
-  imports: [CommonModule,  TagModule, Divider, ChipModule, RouterModule],
+  imports: [
+    CommonModule,
+    TagModule,
+    Divider,
+    ChipModule,
+    RouterModule,
+    FormsModule,
+    ButtonModule,
+    DialogModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    TextareaModule,
+    FloatLabelModule,
+    ColorPickerModule],
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss'
 })
 export class CategoryComponent implements OnInit {
 
   categoryObservable!: Subscription;
+  addListDialogVisible: boolean = false;
+  listForm: any;
+  categoryUuid!: string;
 
   category!: Category; // Assuming you have a List interface defined somewhere
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private todoService: TodoService, // Assuming you have a TodoService to fetch data
-  ) {}
+    private fb: FormBuilder
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const categoryUuid = params['id'];
-      this.categoryObservable = this.todoService.getCategory(categoryUuid).subscribe(category => {
+      this.categoryUuid = params['id'];
+      this.categoryObservable = this.todoService.getCategory(this.categoryUuid).subscribe(category => {
         this.category = category; // Assuming you have a List interface defined somewhere
         console.log(this.category); // Do something with the fetched category data
       });
     });
+
+
+    this.listForm = this.fb.group({
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+      color: [this.generateRandomColor(), Validators.required],
+    });
   }
+
+
+  showAddListDialog(categoryUuid: string) {
+    this.addListDialogVisible = true;
+  }
+
+  addList() {
+    console.log(this.categoryUuid);
+
+    const newList: List = {
+      uuid: self.crypto.randomUUID(),
+      title: this.listForm.value.title,
+      description: this.listForm.value.description,
+      color: this.listForm.value.color,
+      starred: false,
+      lastTouched: new Date(),
+      todos: []
+    };
+    this.todoService.addList(newList, this.categoryUuid).subscribe(() => {
+      console.log('List added successfully!');
+      this.addListDialogVisible = false; // Close the dialog after adding the list
+      this.listForm.reset();
+      // Redirect to new list
+      this.router.navigate(['/pages/lists/list', newList.uuid, this.categoryUuid]);
+    });
+
+    //this.data.categories.forEach()
+
+    //this.todoService.addList({ uuid: '', title: '', todos: [] });
+  }
+
+
+  generateRandomColor() {
+    return '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+  }
+
+
 
 }
 

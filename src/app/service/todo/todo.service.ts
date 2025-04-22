@@ -20,9 +20,10 @@ export class TodoService {
 
   }
 
-
-
-
+  /**
+   * 
+   * @returns Data
+   */
   getData(): Observable<Data> {
     return new Observable<Data>(observer => {
       const data = JSON.parse(this.localStorageService.getData(this.persistenceKey));
@@ -31,7 +32,11 @@ export class TodoService {
     });
   }
 
-
+  /**
+   * 
+   * @param data Data
+   * @returns void
+   */
   setData(data: Data): Observable<void> {
     return new Observable<void>(observer => {
 
@@ -43,7 +48,11 @@ export class TodoService {
     });
   }
 
-
+  /**
+   * 
+   * @param list List
+   * @returns void
+   */
   getCategories(): Observable<any> {
     return new Observable<any>(observer => {
       const categories = JSON.parse(this.localStorageService.getData(this.persistenceKey)).categories;
@@ -55,6 +64,11 @@ export class TodoService {
     })
   }
 
+  /**
+   * 
+   * @param categoryUUId string
+   * @returns Category
+   */
   getCategory(categoryUUId: string): Observable<Category> {
     return new Observable<Category>(observer => {
       const category = JSON.parse(this.localStorageService.getData(this.persistenceKey)).categories.find((category: Category) => category.uuid === categoryUUId);
@@ -66,6 +80,11 @@ export class TodoService {
     })
   }
 
+  /**
+   * 
+   * @param categoryUUId string
+   * @returns List[]
+   */
   getLists(categoryUUId: string): Observable<List[]> {
     return new Observable<List[]>(observer => {
       const lists = JSON.parse(this.localStorageService.getData(this.persistenceKey)).categories.find((category: Category) => category.uuid === categoryUUId)?.lists;
@@ -77,6 +96,11 @@ export class TodoService {
     })
   }
 
+  /**
+   * 
+   * @param listUuid string
+   * @returns List
+   */
   getList(listUuid: string): Observable<List> {
     return new Observable<List>(observer => {
       const list = JSON.parse(this.localStorageService.getData(this.persistenceKey)).categories.flatMap((category: Category) => category.lists).find((list: List) => list.uuid === listUuid);
@@ -88,19 +112,11 @@ export class TodoService {
     });
   }
 
-
-
-
-  addTodo(Todo: Todo): void {
-    // 1. Ta emot Todo objektet och gör till sträng 
-    const todosString = JSON.stringify(Todo);
-    // 2. Spara i local storage
-    // 3. returnera att det är sparat
-    //this.localStorageService.addTodo(todosString);
-
-  }
-
-
+  /**
+   * 
+   * @param listToSave List
+   * @returns void
+   */
   updateList(listToSave: List): Observable<void> {
     let data = JSON.parse(this.localStorageService.getData(this.persistenceKey));
     if (!data) {
@@ -127,23 +143,50 @@ export class TodoService {
   }
 
 
-
-
-
-
-  /*
-    getTodoList(uuid: string): Todo[] | null {
-      return this.localStorageService.getTodoList(uuid);
-    }
-  */
-  /*
-  addTodo(todo: Todo) {
-    //this.localStorageService.saveTodo(todo);
+  /**
+   * 
+   * @param list List
+   * @param categoryUuid string
+   * @returns void
+   */
+  addList(list: List, categoryUuid: string): Observable<void> {
+    return new Observable<void>(observer => {
+      let data = JSON.parse(this.localStorageService.getData(this.persistenceKey));
+      if (!data) {
+        throw new Error('No data found');
+      }
+      else {
+        data.categories.forEach((category: Category) => {
+          if (category.uuid === categoryUuid) {
+            category.lists.push(list); // Add the new list to the category
+          }
+        });
+        this.localStorageService.setData(JSON.stringify(data), this.persistenceKey); // Save the updated data to local storage
+        observer.next();
+        observer.complete();
+      }
+    });
   }
 
-  */
-
-
+  /**
+   * 
+   * @param category Category
+   * @returns void
+   */
+  addCategory(category: Category): Observable<void> {
+    return new Observable<void>(observer => {
+      let data = JSON.parse(this.localStorageService.getData(this.persistenceKey));
+      if (!data) {
+        throw new Error('No data found');
+      }
+      else {
+        data.categories.push(category); // Add the new category to the data
+        this.localStorageService.setData(JSON.stringify(data), this.persistenceKey); // Save the updated data to local storage
+        observer.next();
+        observer.complete();
+      }
+    })
+  }
 
 
 }

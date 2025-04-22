@@ -37,7 +37,7 @@ import { DialogModule } from 'primeng/dialog';
 })
 export class ListComponent implements OnInit {
 
-  
+
 
 
   list!: List;
@@ -50,7 +50,7 @@ export class ListComponent implements OnInit {
   position!: string;
   visible: boolean = false;
   todo: Todo = { uuid: '', title: '', completed: false };
-  
+
 
   constructor(
     private route: ActivatedRoute,
@@ -114,7 +114,7 @@ export class ListComponent implements OnInit {
     this.list.todos.forEach(todo => {
       todo.completed = false; // Set all todos to not completed
     });
-    
+
     this.saveTodo(); // Save the updated list to local storage
   }
 

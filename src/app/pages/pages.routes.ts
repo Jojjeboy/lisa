@@ -10,6 +10,6 @@ export default [
     { path: 'documentation', component: Documentation },
     { path: 'lists', component: ListsComponent },
     { path: 'lists/list/:id/:categoryId', component: ListComponent },
-    { path: 'category/:id', component: CategoryComponent},
+    { path: 'category/:id', component: CategoryComponent },
     { path: '**', redirectTo: '/notfound' }
 ] as Routes;

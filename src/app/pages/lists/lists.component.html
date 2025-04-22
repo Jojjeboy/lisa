@@ -4,7 +4,8 @@
             <div class="flex justify-between mt-2">
                 <div>
                     <h4><a [routerLink]="['/pages/category/', category.uuid]">{{ category.title }}</a></h4>
-                    <p-divider />
+                    <p-divider *ngIf="category.lists.length > 0" />
+                    <p class="text-muted-color" *ngIf="category.lists.length === 0">Inga listor i denna kategori</p>
                     <div *ngFor="let list of category.lists" class="mt-7">
                         <div>
                             <a [routerLink]="['/pages/lists/list/', list.uuid, category.uuid]" class="">
@@ -29,14 +30,17 @@
             </div>
             <p-divider class="mt-4" />
             <p>
-                <p-button icon="pi pi-plus" label="Lägg till lista" (click)="showDialog(category.uuid)" aria-label="Save" />
+                <p-button icon="pi pi-plus" label="Lägg till lista" (click)="showAddListDialog(category.uuid)" aria-label="Save" />
             </p>
         </div>
     </div>
 </div>
 
-<p-dialog header="Uppdatera info" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+<p>
+    <p-button icon="pi pi-plus" label="Lägg till kategori" (click)="showAddCatDialog()" aria-label="Save" />
+</p>
 
+<p-dialog header="Lägg till Lista" [modal]="true" [(visible)]="addListDialogVisible" [style]="{ width: '25rem' }">
     <div class="flex items-center gap-4 mb-4">
         <form [formGroup]="listForm" (ngSubmit)="addList()" class="list-add-container mt-4">
             <div class="input-container">
@@ -55,6 +59,31 @@
             </div>
             <div class="button-container">
                 <p-button icon="pi pi-plus" label="Spara" (click)="addList()" />
+            </div>
+        </form>
+        
+        <!--input pInputText id="title" [(ngModel)]="todo.title" class="flex-auto" autocomplete="off" /-->
+    </div>
+
+    <div class="">
+            <div class="flex justify-end">
+            <!--p-button label="Radera" class="pr-20" severity="danger" (click)="deleteTodo(todo)" />
+            <p-button label="Ångra" class="pr-2 pl-16" severity="secondary" (click)="discard()" />
+            <p-button label="Spara" (click)="updateTodo(todo)" /-->
+        </div>
+    </div>
+</p-dialog>
+
+
+
+<p-dialog header="Lägg till kateori" [modal]="true" [(visible)]="addCategoryDialogVisible" [style]="{ width: '25rem' }">
+    <div class="flex items-center gap-4 mb-4">
+        <form [formGroup]="categoryForm" (ngSubmit)="addCategory()" class="list-add-container mt-4">
+            <div class="input-container">
+                <input type="text" placeholder="Namn på kategori" formControlName="title" pInputText />
+            </div>
+            <div class="button-container">
+                <p-button icon="pi pi-plus" label="Spara" (click)="addCategory()" />
             </div>
         </form>
         

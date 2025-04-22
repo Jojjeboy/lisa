@@ -1,40 +1,79 @@
 <div class="grid mb-8">
-   
+
 
     <div class="col-span-12 lg:col-span-6 xl:col-span-3">
         <div class="card mb-0">
             <div class="flex justify-between mt-2">
                 <div>
-                    <a [routerLink]="['/pages/lists/']"><i class="pi icon-flipped pi-reply" style="font-size: 1.5rem"></i></a>
+                    <a [routerLink]="['/pages/lists/']"><i class="pi icon-flipped pi-reply"
+                            style="font-size: 1.5rem"></i></a>
                     <h4>{{ category.title }}</h4>
-                    <p-divider />
+                    <p-divider *ngIf="category.lists.length > 0" />
+                    <p class="text-muted-color" *ngIf="category.lists.length === 0">Inga listor i denna kategori</p>
                     <div *ngFor="let list of category.lists" class="mt-7">
                         <div><a [routerLink]="['/pages/lists/list/', list.uuid, category.uuid]">
                                 <h5>
-                                    <i class="pi pi-bolt text-yellow-500" [ngStyle]="{'color': list.color }"></i> 
+                                    <i class="pi pi-bolt text-yellow-500" [ngStyle]="{'color': list.color }"></i>
                                     {{ list.title }}
                                 </h5>
                                 <p>{{ list.description }}<p>
-                                <p-chip class="!py-0 !pl-0 !pr-4">
-                                    <span class="bg-primary text-primary-contrast rounded-full w-8 h-8 flex items-center justify-center">
-                                        {{ list.todos.length }}
-                                    </span>
-                                    <span class="ml-2 font-medium">
-                                        uppgifter
-                                    </span>
-                                </p-chip>
+                                        <p-chip class="!py-0 !pl-0 !pr-4">
+                                            <span
+                                                class="bg-primary text-primary-contrast rounded-full w-8 h-8 flex items-center justify-center">
+                                                {{ list.todos.length }}
+                                            </span>
+                                            <span class="ml-2 font-medium">
+                                                uppgifter
+                                            </span>
+                                        </p-chip>
                             </a>
                         </div>
-                        <div class="mt-6 font-small text-muted-color">Använd senast: {{ list.lastTouched | date:" d MMM, yyyy " }} </div>
+                        <div class="mt-6 font-small text-muted-color">Använd senast: {{ list.lastTouched | date:" d MMM,
+                            yyyy " }} </div>
                     </div>
                 </div>
             </div>
             <p-divider class="mt-4" />
             <p>
-                <a href="#" class="text-primary font-medium hover:underline">Lägg till lista</a>
+                <p-button icon="pi pi-plus" label="Lägg till lista" (click)="showAddListDialog(category.uuid)"
+                    aria-label="Save" />
             </p>
         </div>
     </div>
 </div>
 
-      
+
+<p-dialog header="Lägg till Lista" [modal]="true" [(visible)]="addListDialogVisible" [style]="{ width: '25rem' }">
+    <div class="flex items-center gap-4 mb-4">
+        <form [formGroup]="listForm" (ngSubmit)="addList()" class="list-add-container mt-4">
+            <div class="input-container">
+                <input type="text" placeholder="Namn på listan" formControlName="title" pInputText />
+            </div>
+            <div class="text-area-container">
+                <p-floatlabel variant="in">
+                    <textarea pTextarea id="over_label" formControlName="description" rows="5" cols="30"
+                        style="resize: none" class="h-full"></textarea>
+                    <label for="over_label">Beskrivning</label>
+                </p-floatlabel>
+            </div>
+            <div class="color-container">
+                <p-floatlabel>
+                    <p-colorpicker id="color" formControlName="color" inputId="cp-hex" />
+                </p-floatlabel>
+            </div>
+            <div class="button-container">
+                <p-button icon="pi pi-plus" label="Spara" (click)="addList()" />
+            </div>
+        </form>
+
+        <!--input pInputText id="title" [(ngModel)]="todo.title" class="flex-auto" autocomplete="off" /-->
+    </div>
+
+    <div class="">
+        <div class="flex justify-end">
+            <!--p-button label="Radera" class="pr-20" severity="danger" (click)="deleteTodo(todo)" />
+            <p-button label="Ångra" class="pr-2 pl-16" severity="secondary" (click)="discard()" />
+            <p-button label="Spara" (click)="updateTodo(todo)" /-->
+        </div>
+    </div>
+</p-dialog>

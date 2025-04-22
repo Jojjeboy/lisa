@@ -6,8 +6,11 @@
                     <a [routerLink]="['/pages/category/', categoryId]">
                         <i class="pi icon-flipped pi-reply" style="font-size: 1.5rem"></i>
                     </a>
-                    <h4>{{ list.title }}</h4>
-                    <p-divider />
+                    <h4><i class="pi pi-bolt text-yellow-500" [ngStyle]="{'color': list.color }"></i> {{ list.title }}
+                    </h4>
+                    <p>{{ list.description }}</p>
+                    <p-divider *ngIf="list.todos.length " />
+                    <p class="text-muted-color" *ngIf="list.todos">Inga todos i denna lista, lägg till nedan</p>
                     <div class="checkbox-list-container" *ngFor="let todo of list.todos">
                         <div>
                             <label>
@@ -20,7 +23,6 @@
                         </div>
                         <div>
                             <p-button icon="pi pi-pencil" (click)="showDialog(todo)" aria-label="Save" />
-
                         </div>
                     </div>
 
@@ -33,16 +35,17 @@
                         </div>
                     </form>
                     <p-divider />
-                    <p-button [disabled]="shouldBeDisabled()" icon="pi pi-check" severity="secondary" label="Avmarkera alla" (click)="clear()" />
-                    
-                    
+                    <p-button [disabled]="shouldBeDisabled()" icon="pi pi-check" severity="secondary"
+                        label="Avmarkera alla" (click)="clear()" />
+
+
                     <p-divider class="mt-4 mb-4" />
                     <div class="mt-6 font-small">Listan uppdaterades
                         senast: <span class="text-muted-color"> {{ list.lastTouched | date:"HH:mm - d MMM,
-                        yyyy " }} </span></div>
+                            yyyy " }} </span></div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>
@@ -56,12 +59,10 @@
     </div>
 
     <div class="">
-            <div class="flex justify-end">
+        <div class="flex justify-end">
             <p-button label="Radera" class="pr-20" severity="danger" (click)="deleteTodo(todo)" />
             <p-button label="Ångra" class="pr-2 pl-16" severity="secondary" (click)="discard()" />
             <p-button label="Spara" (click)="updateTodo(todo)" />
         </div>
     </div>
 </p-dialog>
-
-
