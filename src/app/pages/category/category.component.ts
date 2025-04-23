@@ -114,16 +114,14 @@ export class CategoryComponent implements OnInit {
   }
 
   updateCategory() {
-    console.log('Category updated successfully!');
-    /*
-    this.category.lastTouched = new Date(); // Update the last touched date
+    
     this.todoService.updateCategory(this.category).subscribe(() => {
       console.log('Category updated successfully!');
       this.editCategoryDialogVisible = false; // Close the dialog after updating the category
     }, error => {
       console.error('Error updating category:', error);
     });
-    */
+    
   }
 
   deleteCategory() {
