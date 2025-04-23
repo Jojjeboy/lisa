@@ -23,7 +23,7 @@
                             <span class="checkbox-text">{{ todo.title }}</span>
                         </div>
                         <div>
-                            <p-button icon="pi pi-pencil" (click)="showEditTodoDialog(todo)" aria-label="Save" />
+                            <p-button variant="text" icon="pi pi-pencil" (click)="showEditTodoDialog(todo)" aria-label="Save" />
                         </div>
                     </div>
 
@@ -37,36 +37,28 @@
                     </form>
                     <p-divider />
 
-                    <p-accordion value="0">
+                    <p-accordion value="1" expandIcon="pi pi-chevron-down" collapseIcon="pi pi-chevron-up">
                         <p-accordion-panel value="0">
                             <p-accordion-header>Hantera listan</p-accordion-header>
                             <p-accordion-content style="padding-left: 0;">
                                 <div style="display: flex; justify-content: space-between; align-content: flex-start;">
                                     <div>
-                                        <p-button [disabled]="shouldBeDisabled()" icon="pi pi-check" severity="success"
+                                        <p-button variant="text" [disabled]="shouldBeDisabled()" icon="pi pi-check" severity="success"
                                             label="Rensa" (click)="clear()" />
                                     </div>
                                     <div>
-                                        <p-button icon="pi pi-pencil" severity="warn" label="Redigera"
+                                        <p-button variant="text" icon="pi pi-pencil" severity="warn" label="Redigera"
                                             (click)="showEditListDialog()" />
                                     </div>
                                     <div>
-                                        <p-button icon="pi pi-trash" severity="danger" label="Radera"
+                                        <p-button variant="text" icon="pi pi-trash" severity="danger" label="Radera"
                                             (click)="deleteList()" />
                                     </div>
                                 </div>
                             </p-accordion-content>
                         </p-accordion-panel>
-
-
                     </p-accordion>
-
-
-
-
                 </div>
-
-
                 <div class="mt-6 font-small">Listan uppdaterades
                     senast: <span class="text-muted-color"> {{ list.lastTouched | date:"HH:mm - d MMM,
                         yyyy " }} </span></div>
@@ -104,7 +96,7 @@
     </div>
     <div class="text-area-container">
         <p-floatlabel variant="in">
-            <textarea pTextarea id="over_label" [(ngModel)]="list.description"  rows="5" cols="30" style="resize: none"
+            <textarea pTextarea id="over_label" [(ngModel)]="list.description" rows="5" cols="30" style="resize: none"
                 class="h-full"></textarea>
             <label for="over_label">Beskrivning</label>
         </p-floatlabel>

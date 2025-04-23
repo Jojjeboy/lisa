@@ -15,6 +15,7 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { List } from '../../interface/List.interface';
 import { InputTextModule } from 'primeng/inputtext';
+import { AccordionModule } from 'primeng/accordion';
 
 @Component({
   selector: 'app-category',
@@ -31,6 +32,7 @@ import { InputTextModule } from 'primeng/inputtext';
     InputTextModule,
     TextareaModule,
     FloatLabelModule,
+    AccordionModule,
     ColorPickerModule],
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss'
@@ -39,6 +41,8 @@ export class CategoryComponent implements OnInit {
 
   categoryObservable!: Subscription;
   addListDialogVisible: boolean = false;
+  editCategoryDialogVisible: boolean = false;
+  categoryOriginalTitle!: string;
   listForm: any;
   categoryUuid!: string;
 
@@ -91,10 +95,43 @@ export class CategoryComponent implements OnInit {
       // Redirect to new list
       this.router.navigate(['/pages/lists/list', newList.uuid, this.categoryUuid]);
     });
+  }
 
-    //this.data.categories.forEach()
 
-    //this.todoService.addList({ uuid: '', title: '', todos: [] });
+  showEditCategoryDialog(){
+    this.editCategoryDialogVisible = true;
+    this.categoryOriginalTitle = this.category.title;
+  }
+
+
+ 
+
+  discardCategoryEdit(){
+    this.category.title = this.categoryOriginalTitle;
+    this.editCategoryDialogVisible = false;
+  }
+
+  updateCategory() {
+    console.log('Category updated successfully!');
+    /*
+    this.category.lastTouched = new Date(); // Update the last touched date
+    this.todoService.updateCategory(this.category).subscribe(() => {
+      console.log('Category updated successfully!');
+      this.editCategoryDialogVisible = false; // Close the dialog after updating the category
+    }, error => {
+      console.error('Error updating category:', error);
+    });
+    */
+  }
+
+  deleteCategory() {
+    console.log('Category deleted successfully!');
+
+    /*
+    this.todoService.deleteCategory(this.categoryUuid).subscribe(() => {
+      this.router.navigate(['/pages/lists']);
+    });
+    */
   }
 
 

@@ -19,13 +19,11 @@
                                                 class="bg-primary text-primary-contrast rounded-full w-8 h-8 flex items-center justify-center">
                                                 {{ list.todos.length }}
                                             </span>
-                                            <span class="ml-2 font-medium">
-                                                uppgifter
-                                            </span>
+                                            <span class="ml-2 font-medium">Uppgifter </span>
                                         </p-chip>
                             </a>
                         </div>
-                        <div class="mt-6 font-small text-muted-color">Använd senast: {{ list.lastTouched | date:" d MMM,
+                        <div class="mt-6 font-small text-muted-color">Använd senast: {{ list.lastTouched | date:"HH:mm d MMM,
                             yyyy " }} </div>
                     </div>
                 </div>

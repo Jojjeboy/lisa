@@ -32,11 +32,35 @@
                             yyyy " }} </div>
                     </div>
                 </div>
+
+
+
             </div>
-            <p-divider class="mt-4" />
-            <p>
-                <p-button icon="pi pi-plus" label="Lägg till lista" (click)="showAddListDialog(category.uuid)"
+
+            <p-accordion value="1" expandIcon="pi pi-chevron-down" collapseIcon="pi pi-chevron-up">
+                <p-accordion-panel value="0">
+                    <p-accordion-header>Hantera kategori</p-accordion-header>
+                    <p-accordion-content style="padding-left: 0;">
+                        <div style="display: flex; justify-content: space-between; align-content: flex-start;">
+                            <div>
+                                <p-button variant="text" icon="pi pi-plus" label="Ny lista" (click)="showAddListDialog(category.uuid)"
                     aria-label="Save" />
+                            </div>
+                            <div>
+                                <p-button variant="text" icon="pi pi-pencil" severity="warn" label="Redigera"
+                                    (click)="showEditCategoryDialog()" />
+                            </div>
+                            <div>
+                                <p-button variant="text" icon="pi pi-trash" severity="danger" label="Radera"
+                                    (click)="deleteCategory()" />
+                            </div>
+                        </div>
+                    </p-accordion-content>
+                </p-accordion-panel>
+            </p-accordion>
+
+            <p class="mt-4">
+                
             </p>
         </div>
     </div>
@@ -74,6 +98,24 @@
             <!--p-button label="Radera" class="pr-20" severity="danger" (click)="deleteTodo(todo)" />
             <p-button label="Ångra" class="pr-2 pl-16" severity="secondary" (click)="discard()" />
             <p-button label="Spara" (click)="updateTodo(todo)" /-->
+        </div>
+    </div>
+</p-dialog>
+
+
+
+<p-dialog header="Uppdatera lista" [modal]="true" [(visible)]="editCategoryDialogVisible" [style]="{ width: '25rem' }">
+
+    <div class="flex items-center gap-4 mb-4">
+        <label for="title" class="font-semibold w-24">Titel</label>
+        <input pInputText id="title" [(ngModel)]="category.title" class="flex-auto" autocomplete="off" />
+    </div>
+
+    <div class="">
+        <div class="flex justify-end">
+            <p-button label="Radera" class="pr-20" severity="danger" (click)="deleteCategory()" />
+            <p-button label="Ångra" class="pr-2 pl-16" severity="secondary" (click)="discardCategoryEdit()" />
+            <p-button label="Spara" (click)="updateCategory()" />
         </div>
     </div>
 </p-dialog>

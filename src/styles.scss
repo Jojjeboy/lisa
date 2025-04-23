@@ -11,3 +11,11 @@
     -webkit-transform: scaleX(-1);
     -ms-transform: scaleX(-1);
 }
+
+.p-ripple p-accordionheader,
+.p-accordioncontent-content,
+.p-accordion-header,
+.p-accordionheader {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}

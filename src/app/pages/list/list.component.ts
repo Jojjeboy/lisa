@@ -141,7 +141,7 @@ export class ListComponent implements OnInit {
 
 
   showEditTodoDialog(todo: Todo) {
-    this.todo = todo;
+    this.todo = {...todo};
     this.todoOriginalTitle = todo.title;
     this.editTodoDialogvisible = true;
   }
