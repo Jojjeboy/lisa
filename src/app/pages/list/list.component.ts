@@ -42,9 +42,6 @@ import { ConfirmDialogComponent } from '../../resuable-componentents/confirm-dia
 })
 export class ListComponent implements OnInit {
 
-
-
-
   list!: List;
   categoryId!: string;
   listObserveble!: Subscription;
@@ -198,7 +195,7 @@ export class ListComponent implements OnInit {
       console.log('List deleted successfully!');
     });
 
-    this.router.navigate(['/pages/category', this.categoryId]);
+    this.router.navigate(['/category', this.categoryId]);
   }
 
 

@@ -21,7 +21,7 @@ import { Router } from '@angular/router';
 
 
 @Component({
-    selector: 'app-lists',
+    selector: 'app-start',
     standalone: true,
     imports: [
         CommonModule,
@@ -37,9 +37,9 @@ import { Router } from '@angular/router';
         TextareaModule,
         FloatLabelModule,
         ColorPickerModule],
-    templateUrl: './lists.component.html'
+    templateUrl: './start.component.html'
 })
-export class ListsComponent implements OnInit {
+export class StartComponent implements OnInit {
     data!: Data;
     list!: List;
     listForm: any;
@@ -101,7 +101,7 @@ export class ListsComponent implements OnInit {
             this.addListDialogVisible = false; // Close the dialog after adding the list
             this.listForm.reset();
             // Redirect to new list
-            this.router.navigate(['/pages/lists/list', newList.uuid, this.categoryUuid]);
+            this.router.navigate(['/list', newList.uuid, this.categoryUuid]);
         });
 
         //this.data.categories.forEach()
@@ -126,7 +126,7 @@ export class ListsComponent implements OnInit {
             console.log('Category added successfully!');
             this.addCategoryDialogVisible = false;
             this.categoryForm.reset();
-            this.router.navigate(['/pages/category', newCategory.uuid]);
+            this.router.navigate(['/category', newCategory.uuid]);
         });
     }
 

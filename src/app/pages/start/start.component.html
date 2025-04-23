@@ -3,12 +3,12 @@
         <div class="card mb-0">
             <div class="flex justify-between mt-2">
                 <div>
-                    <h4><a [routerLink]="['/pages/category/', category.uuid]">{{ category.title }}</a></h4>
+                    <h4><a [routerLink]="['/category/', category.uuid]">{{ category.title }}</a></h4>
                     <p-divider *ngIf="category.lists.length > 0" />
                     <p class="text-muted-color" *ngIf="category.lists.length === 0">Inga listor i denna kategori</p>
                     <div *ngFor="let list of category.lists" class="mt-7">
                         <div>
-                            <a [routerLink]="['/pages/lists/list/', list.uuid, category.uuid]" class="">
+                            <a [routerLink]="['list/', list.uuid, category.uuid]" class="">
                                 <h5>
                                     <i class="pi pi-bolt text-yellow-500" [ngStyle]="{'color': list.color }"></i>
                                     {{ list.title }}

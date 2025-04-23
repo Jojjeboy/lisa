@@ -5,13 +5,13 @@
         <div class="card mb-0">
             <div class="flex justify-between mt-2 mb-4">
                 <div>
-                    <a [routerLink]="['/pages/lists/']"><i class="pi icon-flipped pi-reply"
+                    <a [routerLink]="['/']"><i class="pi icon-flipped pi-reply"
                             style="font-size: 1.5rem"></i></a>
                     <h4>{{ category.title }}</h4>
                     <p-divider *ngIf="category.lists.length > 0" />
                     <p class="text-muted-color" *ngIf="category.lists.length === 0">Inga listor i denna kategori</p>
                     <div *ngFor="let list of category.lists" class="mt-7">
-                        <div><a [routerLink]="['/pages/lists/list/', list.uuid, category.uuid]">
+                        <div><a [routerLink]="['/list/', list.uuid, category.uuid]">
                                 <h5>
                                     <i class="pi pi-bolt text-yellow-500" [ngStyle]="{'color': list.color }"></i>
                                     {{ list.title }}
