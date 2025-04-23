@@ -5,27 +5,7 @@
                 <div>
                     <h4><a [routerLink]="['/category/', category.uuid]">{{ category.title }}</a></h4>
                     <p-divider *ngIf="category.lists.length > 0" />
-                    <p class="text-muted-color" *ngIf="category.lists.length === 0">Inga listor i denna kategori</p>
-                    <div *ngFor="let list of category.lists" class="mt-7">
-                        <div>
-                            <a [routerLink]="['list/', list.uuid, category.uuid]" class="">
-                                <h5>
-                                    <i class="pi pi-bolt text-yellow-500" [ngStyle]="{'color': list.color }"></i>
-                                    {{ list.title }}
-                                </h5>
-                                <p>{{ list.description }}<p>
-                                        <p-chip class="!py-0 !pl-0 !pr-4">
-                                            <span
-                                                class="bg-primary text-primary-contrast rounded-full w-8 h-8 flex items-center justify-center">
-                                                {{ list.todos.length }}
-                                            </span>
-                                            <span class="ml-2 font-medium">Uppgifter </span>
-                                        </p-chip>
-                            </a>
-                        </div>
-                        <div class="mt-6 font-small text-muted-color">Använd senast: {{ list.lastTouched | date:"HH:mm d MMM,
-                            yyyy " }} </div>
-                    </div>
+                    <app-list-lists [category]="category"></app-list-lists>
                 </div>
             </div>
             <p-divider class="mt-4" />
@@ -93,7 +73,7 @@
     </div>
 
     <div class="">
-            <div class="flex justify-end">
+        <div class="flex justify-end">
             <!--p-button label="Radera" class="pr-20" severity="danger" (click)="deleteTodo(todo)" />
             <p-button label="Ångra" class="pr-2 pl-16" severity="secondary" (click)="discard()" />
             <p-button label="Spara" (click)="updateTodo(todo)" /-->

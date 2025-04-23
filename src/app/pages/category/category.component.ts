@@ -17,6 +17,7 @@ import { List } from '../../interface/List.interface';
 import { InputTextModule } from 'primeng/inputtext';
 import { AccordionModule } from 'primeng/accordion';
 import { ConfirmDialogComponent } from '../../resuable-componentents/confirm-dialog/confirm-dialog.component';
+import { ListListsComponent } from '../../resuable-componentents/list-lists/list-lists.component';
 
 @Component({
   selector: 'app-category',
@@ -35,7 +36,8 @@ import { ConfirmDialogComponent } from '../../resuable-componentents/confirm-dia
     FloatLabelModule,
     AccordionModule,
     ColorPickerModule,
-    ConfirmDialogComponent],
+    ConfirmDialogComponent,
+  ListListsComponent],
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss'
 })

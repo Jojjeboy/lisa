@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Divider } from 'primeng/divider';
-import { TagModule } from 'primeng/tag';
 import { TodoService } from '../../service/todo/todo.service';
-import { ChipModule } from 'primeng/chip';
 import { Data } from '../../interface/Data.interface';
 import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -17,6 +15,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { Router } from '@angular/router';
+import { ListListsComponent } from '../../resuable-componentents/list-lists/list-lists.component';
 
 
 
@@ -25,9 +24,8 @@ import { Router } from '@angular/router';
     standalone: true,
     imports: [
         CommonModule,
-        TagModule,
+        
         Divider,
-        ChipModule,
         FormsModule,
         RouterModule,
         InputTextModule,
@@ -36,7 +34,8 @@ import { Router } from '@angular/router';
         DialogModule,
         TextareaModule,
         FloatLabelModule,
-        ColorPickerModule],
+        ColorPickerModule,
+        ListListsComponent],
     templateUrl: './start.component.html'
 })
 export class StartComponent implements OnInit {

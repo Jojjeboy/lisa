@@ -5,32 +5,10 @@
         <div class="card mb-0">
             <div class="flex justify-between mt-2 mb-4">
                 <div>
-                    <a [routerLink]="['/']"><i class="pi icon-flipped pi-reply"
-                            style="font-size: 1.5rem"></i></a>
+                    <a [routerLink]="['/']"><i class="pi icon-flipped pi-reply" style="font-size: 1.5rem"></i></a>
                     <h4>{{ category.title }}</h4>
                     <p-divider *ngIf="category.lists.length > 0" />
-                    <p class="text-muted-color" *ngIf="category.lists.length === 0">Inga listor i denna kategori</p>
-                    <div *ngFor="let list of category.lists" class="mt-7">
-                        <div><a [routerLink]="['/list/', list.uuid, category.uuid]">
-                                <h5>
-                                    <i class="pi pi-bolt text-yellow-500" [ngStyle]="{'color': list.color }"></i>
-                                    {{ list.title }}
-                                </h5>
-                                <p>{{ list.description }}<p>
-                                        <p-chip class="!py-0 !pl-0 !pr-4">
-                                            <span
-                                                class="bg-primary text-primary-contrast rounded-full w-8 h-8 flex items-center justify-center">
-                                                {{ list.todos.length }}
-                                            </span>
-                                            <span class="ml-2 font-medium">
-                                                uppgifter
-                                            </span>
-                                        </p-chip>
-                            </a>
-                        </div>
-                        <div class="mt-6 font-small text-muted-color">Använd senast: {{ list.lastTouched | date:" d MMM,
-                            yyyy " }} </div>
-                    </div>
+                    <app-list-lists [category]="category"></app-list-lists>
                 </div>
             </div>
 
@@ -40,21 +18,18 @@
                     <p-accordion-content style="padding-left: 0;">
                         <div style="display: flex; justify-content: space-between; align-content: flex-start;">
                             <div>
-                                <p-button variant="text" icon="pi pi-plus" label="Ny lista" (click)="showAddListDialog(category.uuid)"
-                    aria-label="Save" />
+                                <p-button variant="text" icon="pi pi-plus" label="Ny lista"
+                                    (click)="showAddListDialog(category.uuid)" aria-label="Save" />
                             </div>
                             <div>
                                 <p-button variant="text" icon="pi pi-pencil" severity="warn" label="Redigera"
                                     (click)="showEditCategoryDialog()" />
                             </div>
-                            <div>                                    
-                                <app-confirm-dialog 
-                                [message]="'Är du säker på att du vill ta bort kategorin?'" 
-                                [header]="'Ta bort kategori?'"
-                                [label]="'Radera'"
-                                [disabled]="category.lists.length > 0"
-                                [icon]="'pi pi-trash'"
-                                (dialogAcceptFunc)="deleteCategory()"></app-confirm-dialog>
+                            <div>
+                                <app-confirm-dialog [message]="'Är du säker på att du vill ta bort kategorin?'"
+                                    [header]="'Ta bort kategori?'" [label]="'Radera'"
+                                    [disabled]="category.lists.length > 0" [icon]="'pi pi-trash'"
+                                    (dialogAcceptFunc)="deleteCategory()"></app-confirm-dialog>
                             </div>
                         </div>
                     </p-accordion-content>
@@ -62,7 +37,7 @@
             </p-accordion>
 
             <p class="mt-4">
-                
+
             </p>
         </div>
     </div>
@@ -91,16 +66,6 @@
                 <p-button icon="pi pi-plus" [disabled]="!listForm.valid" label="Spara" (click)="addList()" />
             </div>
         </form>
-
-        <!--input pInputText id="title" [(ngModel)]="todo.title" class="flex-auto" autocomplete="off" /-->
-    </div>
-
-    <div class="">
-        <div class="flex justify-end">
-            <!--p-button label="Radera" class="pr-20" severity="danger" (click)="deleteTodo(todo)" />
-            <p-button label="Ångra" class="pr-2 pl-16" severity="secondary" (click)="discard()" />
-            <p-button label="Spara" (click)="updateTodo(todo)" /-->
-        </div>
     </div>
 </p-dialog>
 
