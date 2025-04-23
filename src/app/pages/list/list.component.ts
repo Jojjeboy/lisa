@@ -16,6 +16,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { AccordionModule } from 'primeng/accordion';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { ConfirmDialogComponent } from '../../resuable-componentents/confirm-dialog/confirm-dialog.component';
 
 
 
@@ -34,7 +35,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
     ReactiveFormsModule,
     DialogModule,
     AccordionModule,
-    FloatLabelModule],
+    FloatLabelModule, ConfirmDialogComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
   standalone: true
