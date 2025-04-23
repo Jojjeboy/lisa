@@ -76,7 +76,7 @@ export class CategoryComponent implements OnInit {
   }
 
 
-  showAddListDialog(categoryUuid: string) {
+  showAddListDialog() {
     this.addListDialogVisible = true;
   }
 

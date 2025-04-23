@@ -8,7 +8,7 @@
                     <a [routerLink]="['/']"><i class="pi icon-flipped pi-reply" style="font-size: 1.5rem"></i></a>
                     <h4>{{ category.title }}</h4>
                     <p-divider *ngIf="category.lists.length > 0" />
-                    <app-list-lists [category]="category"></app-list-lists>
+                    <app-list-lists [category]="category" (showAddListDialog)="showAddListDialog()"></app-list-lists>
                 </div>
             </div>
 
@@ -19,7 +19,7 @@
                         <div style="display: flex; justify-content: space-between; align-content: flex-start;">
                             <div>
                                 <p-button variant="text" icon="pi pi-plus" label="Ny lista"
-                                    (click)="showAddListDialog(category.uuid)" aria-label="Save" />
+                                    (click)="showAddListDialog()" aria-label="Save" />
                             </div>
                             <div>
                                 <p-button variant="text" icon="pi pi-pencil" severity="warn" label="Redigera"
