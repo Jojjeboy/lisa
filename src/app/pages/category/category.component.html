@@ -88,7 +88,7 @@
                 </p-floatlabel>
             </div>
             <div class="button-container">
-                <p-button icon="pi pi-plus" label="Spara" (click)="addList()" />
+                <p-button icon="pi pi-plus" [disabled]="!listForm.valid" label="Spara" (click)="addList()" />
             </div>
         </form>
 
