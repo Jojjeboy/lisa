@@ -11,7 +11,7 @@
                     </h4>
                     <p>{{ list.description }}</p>
                     <p-divider *ngIf="list.todos.length " />
-                    <p class="text-muted-color" *ngIf="list.todos">Inga todos i denna lista, lägg till nedan</p>
+                    <p class="text-muted-color" *ngIf="list.todos.length < 1">Inga todos i denna lista, lägg till nedan</p>
                     <div class="checkbox-list-container" *ngFor="let todo of list.todos">
                         <div>
                             <label>
@@ -32,7 +32,7 @@
                             <input type="text" placeholder="Skriv text..." formControlName="title" pInputText />
                         </div>
                         <div class="button-container">
-                            <p-button icon="pi pi-plus" label="Spara" (click)="addTodo()" />
+                            <p-button icon="pi pi-plus" [disabled]="todoForm.invalid" label="Spara" (click)="addTodo()" />
                         </div>
                     </form>
                     <p-divider />
