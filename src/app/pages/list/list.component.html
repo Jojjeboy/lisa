@@ -52,7 +52,7 @@
                                     </div>
                                     <div>
                                             <app-confirm-dialog 
-                                            [message]="'Är du säker på att du vill ta bort listan?'" 
+                                            [message]="list.todos.length > 0 ? 'Är du säker på att du vill ta bort listan och listans ' + list.todos.length + ' todos?' : 'Är du säker på att du vill ta bort listan?'" 
                                             [header]="'Ta bort lista?'"
                                             [label]="'Radera'"
                                             [icon]="'pi pi-trash'"
