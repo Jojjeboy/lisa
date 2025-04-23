@@ -37,7 +37,7 @@
                     </form>
                     <p-divider />
 
-                    <p-accordion value="1" expandIcon="pi pi-chevron-down" collapseIcon="pi pi-chevron-up">
+                    <p-accordion value="0" expandIcon="pi pi-chevron-down" collapseIcon="pi pi-chevron-up">
                         <p-accordion-panel value="0">
                             <p-accordion-header>Hantera listan</p-accordion-header>
                             <p-accordion-content style="padding-left: 0;">
@@ -51,8 +51,12 @@
                                             (click)="showEditListDialog()" />
                                     </div>
                                     <div>
-                                        <p-button variant="text" icon="pi pi-trash" severity="danger" label="Radera"
-                                            (click)="confirmDeleteList()" />
+                                            <app-confirm-dialog 
+                                            [message]="'Är du säker på att du vill ta bort listan?'" 
+                                            [header]="'Ta bort lista?'"
+                                            [label]="'Radera'"
+                                            [icon]="'pi pi-trash'"
+                                            (dialogAcceptFunc)="deleteList()"></app-confirm-dialog>
                                     </div>
                                 </div>
                             </p-accordion-content>
@@ -110,10 +114,3 @@
         </div>
     </div>
 </p-dialog>
-
-
-
-
-<div class="mt-4 mb-4">
-    <app-confirm-dialog [message]="'Är du säker på att du vill ta bort listan?'" [header]="'Ta bort lista?'"></app-confirm-dialog>
-    </div>

@@ -47,9 +47,14 @@
                                 <p-button variant="text" icon="pi pi-pencil" severity="warn" label="Redigera"
                                     (click)="showEditCategoryDialog()" />
                             </div>
-                            <div>
-                                <p-button variant="text" icon="pi pi-trash" severity="danger" label="Radera"
-                                    (click)="confirmDeleteCategory()" />
+                            <div>                                    
+                                <app-confirm-dialog 
+                                [message]="'Är du säker på att du vill ta bort kategorin?'" 
+                                [header]="'Ta bort kategori?'"
+                                [label]="'Radera'"
+                                [disabled]="category.lists.length > 0"
+                                [icon]="'pi pi-trash'"
+                                (dialogAcceptFunc)="deleteCategory()"></app-confirm-dialog>
                             </div>
                         </div>
                     </p-accordion-content>

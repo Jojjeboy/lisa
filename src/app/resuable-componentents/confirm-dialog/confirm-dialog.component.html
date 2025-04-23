@@ -1,5 +1,10 @@
 <p-toast />
 <p-confirmdialog />
-
-
-<p-button (click)="confirm1()" label="Save" [outlined]="true" />
+<p-button 
+    (click)="confirm()" 
+    [label]="label"
+    [icon]="icon"
+    [disabled]="disabled"
+    variant="text"
+    [severity]="'danger'" 
+     />

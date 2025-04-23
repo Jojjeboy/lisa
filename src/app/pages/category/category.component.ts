@@ -16,6 +16,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { List } from '../../interface/List.interface';
 import { InputTextModule } from 'primeng/inputtext';
 import { AccordionModule } from 'primeng/accordion';
+import { ConfirmDialogComponent } from '../../resuable-componentents/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-category',
@@ -33,7 +34,8 @@ import { AccordionModule } from 'primeng/accordion';
     TextareaModule,
     FloatLabelModule,
     AccordionModule,
-    ColorPickerModule],
+    ColorPickerModule,
+    ConfirmDialogComponent],
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss'
 })
@@ -131,18 +133,9 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  confirmDeleteCategory() {
-    const confirmed = confirm('Är du säker?');
-    if (confirmed) {
-      this.deleteCategory();
-    }
-  }
-
-
   generateRandomColor() {
     return '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
   }
-
 
 
 }

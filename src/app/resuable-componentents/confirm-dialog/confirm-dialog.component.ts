@@ -1,4 +1,4 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, Input, Output, EventEmitter, input } from '@angular/core';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -20,11 +20,15 @@ export class ConfirmDialogComponent {
 
 
   @Input() message: string = 'Are you sure that you want to proceed?';
-  @Input() header: string = 'Confirmation'; 
+  @Input() label: string = 'Confirm';
+  @Input() header: string = 'Confirmation';
+  @Input() disabled: boolean = false;
   @Input() icon: string = 'pi pi-exclamation-triangle';
+  @Output() dialogAcceptFunc = new EventEmitter<void>();
 
 
-  confirm1() {
+
+  confirm() {
     //console.log('Event:', evt);
     this.confirmationService.confirm({
         message: this.message,
@@ -37,21 +41,7 @@ export class ConfirmDialogComponent {
         rejectButtonStyleClass: 'p-button-secondary',
         acceptIcon: 'pi pi-check',
         rejectIcon: 'pi pi-times',
-        accept: () => this.acceptFunc(),
-        reject: () => this.rejectFunc()
+        accept: () => this.dialogAcceptFunc.emit()
     });  
-  }
-
-
-  acceptFunc() {
-    // Actual logic to perform a confirmation
-    console.log('Confirmed');
-    this.confirmationService.close(); 
-  }
-
-  rejectFunc() {
-    // Actual logic to perform a rejection
-    console.log('Rejected');
-    this.confirmationService.close(); 
   }
 }

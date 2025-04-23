@@ -60,6 +60,7 @@ export class ListComponent implements OnInit {
   todo: Todo = { uuid: '', title: '', completed: false };
 
 
+
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
@@ -200,12 +201,6 @@ export class ListComponent implements OnInit {
     this.router.navigate(['/pages/category', this.categoryId]);
   }
 
-  confirmDeleteList() {
-    const confirmed = confirm('Är du säker?');
-    if (confirmed) {
-      this.deleteList();
-    }
-  }
 
 
   generateRandomColor() {
