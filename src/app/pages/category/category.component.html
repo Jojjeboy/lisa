@@ -3,7 +3,7 @@
 
     <div class="col-span-12 lg:col-span-6 xl:col-span-3">
         <div class="card mb-0">
-            <div class="flex justify-between mt-2">
+            <div class="flex justify-between mt-2 mb-4">
                 <div>
                     <a [routerLink]="['/pages/lists/']"><i class="pi icon-flipped pi-reply"
                             style="font-size: 1.5rem"></i></a>
@@ -32,9 +32,6 @@
                             yyyy " }} </div>
                     </div>
                 </div>
-
-
-
             </div>
 
             <p-accordion value="1" expandIcon="pi pi-chevron-down" collapseIcon="pi pi-chevron-up">
@@ -52,7 +49,7 @@
                             </div>
                             <div>
                                 <p-button variant="text" icon="pi pi-trash" severity="danger" label="Radera"
-                                    (click)="deleteCategory()" />
+                                    (click)="confirmDeleteCategory()" />
                             </div>
                         </div>
                     </p-accordion-content>

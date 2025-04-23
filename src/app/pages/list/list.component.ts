@@ -199,6 +199,13 @@ export class ListComponent implements OnInit {
     this.router.navigate(['/pages/category', this.categoryId]);
   }
 
+  confirmDeleteList() {
+    const confirmed = confirm('Är du säker?');
+    if (confirmed) {
+      this.deleteList();
+    }
+  }
+
 
   generateRandomColor() {
     return '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');

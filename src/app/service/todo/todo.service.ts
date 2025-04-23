@@ -206,6 +206,21 @@ export class TodoService {
     });
   }
 
+  deleteCategory(categoryUuid: string): Observable<void> {
+    return new Observable<void>(observer => {
+      let data = JSON.parse(this.localStorageService.getData(this.persistenceKey));
+      if (!data) {
+        throw new Error('No data found');
+      }
+      else {
+        data.categories = data.categories.filter((category: Category) => category.uuid !== categoryUuid); // Remove the category from the data
+        this.localStorageService.setData(JSON.stringify(data), this.persistenceKey); // Save the updated data to local storage
+        observer.next();
+        observer.complete();
+      }
+    });
+  }
+
 
 
 }
