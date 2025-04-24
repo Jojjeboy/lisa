@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
 import { ListListsComponent } from '../../resuable-componentents/list-lists/list-lists.component';
 import { MiscService } from '../../service/misc/misc.service';
 import { AddListDialogComponent } from '../../resuable-componentents/add-list-dialog/add-list-dialog.component';
+import { CategoryService } from '../../service/category/category.service';
 
 
 
@@ -57,6 +58,7 @@ export class StartComponent implements OnInit {
     chosenColor: string = '#000000'; // Default color
 
     constructor(
+        private categoryService: CategoryService,
         private todoService: TodoService,
         private miscService: MiscService,
         private fb: FormBuilder,
@@ -65,9 +67,9 @@ export class StartComponent implements OnInit {
         }
 
     ngOnInit() {
-        //this.data = this.todoService.getData(); 
         this.dataObservable = this.todoService.getData().subscribe(data => {
             this.data = data; // Assuming you have a List interface defined somewhere
+            this.data.categories = this.data.categories.sort((b, a) => b.order - a.order);
         });
 
 
@@ -79,15 +81,21 @@ export class StartComponent implements OnInit {
         });
 
         this.generateColors();
-        console.log(this.colorsToPickfrom);
-        this.setColor(this.colorsToPickfrom[this.randomIntFromInterval(0, this.colorsToPickfrom.length - 1)]); // Set the first color as the default color
+        this.setColor(this.colorsToPickfrom[this.miscService.randomIntFromInterval(0, this.colorsToPickfrom.length - 1)]); // Set the first color as the default color
+    }
+
+
+    upCategory(categoryUuid: string) {
+        this.categoryService.upCategory(categoryUuid);
+    }
+
+    downCategory(categoryUuid: string) {
+        this.categoryService.downCategory(categoryUuid);
     }
 
 
     
-    randomIntFromInterval(min: number, max: number) { // min and max included 
-        return Math.floor(Math.random() * (max - min + 1) + min);
-    }
+    
   
 
     
@@ -109,7 +117,7 @@ export class StartComponent implements OnInit {
         console.log(this.categoryUuid);
 
         const newList: List = {
-            uuid: self.crypto.randomUUID(),
+            uuid: this.miscService.generateUuid(),
             title: this.listForm.value.title,
             description: this.listForm.value.description,
             starred: false,
@@ -135,9 +143,10 @@ export class StartComponent implements OnInit {
 
 
         const newCategory = {
-            uuid: self.crypto.randomUUID(),
+            uuid: this.miscService.generateUuid(),
             title: this.categoryForm.value.title,
             color: this.chosenColor,
+            order: this.data.categories.length + 1,
             lists: []
         };
 
@@ -154,10 +163,12 @@ export class StartComponent implements OnInit {
     }
 
     generateColors() {
-        this.colorsToPickfrom = []; // Clear the existing colors
-        for (let i = 0; i < 12; i++) {
-            this.colorsToPickfrom.push(this.miscService.generateRandomColor());
-        }
+        this.colorsToPickfrom = this.miscService.generateRandomColors(12);
+    }
+
+
+    ngOnDestroy() {
+        this.dataObservable.unsubscribe(); // Unsubscribe to avoid memory leaks
     }
 
 }

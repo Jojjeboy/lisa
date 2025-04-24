@@ -3,7 +3,9 @@
         <div class="card mb-0">
             <div class="flex justify-between mt-2">
                 <div>
-                    <h4><a [routerLink]="['/category/', category.uuid]">{{ category.title }}</a></h4>
+                    <h4><a [routerLink]="['/category/', category.uuid]">{{ category.title }}</a> <br />
+                        <i class="pi pi-chevron-up" *ngIf="category.order > 0" (click)="upCategory(category.uuid)"></i> &nbsp; 
+                        <i class="pi pi-chevron-down"  *ngIf="category.order < (data.categories.length - 1)" (click)="downCategory(category.uuid)"></i></h4>
                     <p-divider *ngIf="category.lists.length > 0" />
                     <app-list-lists [category]="category"></app-list-lists>
                 </div>

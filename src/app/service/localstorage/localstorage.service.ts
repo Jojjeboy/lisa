@@ -32,7 +32,7 @@ export class LocalstorageService {
      * @param data: string 
      * @returns void
      */
-    setData(data: string, key: string): void { 
+    setData(key: string, data: string,): void { 
       localStorage.setItem(key, data); // set data to local storage
     }
 

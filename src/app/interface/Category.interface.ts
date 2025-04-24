@@ -4,5 +4,6 @@ export interface Category {
     uuid:  string;
     title: string;
     color: string;
+    order: number;
     lists: List[];
 }

@@ -4,6 +4,7 @@
             "uuid": "d1f710f9-6703-413d-8d16-56b977e2e9f9",
             "title": "Packning jobb",
             "color": "#FF5733",
+            "order": 0,
             "lists": [
                 {
                     "uuid": "d0b2f757-af29-41eb-a78d-c02abd724342",
@@ -59,6 +60,7 @@
             "uuid": "613964d7-2977-47df-8bd8-d262b528e4dc",
             "title": "Städning",
             "color": "#bdd28e",
+            "order": 1,
             "lists": [
                 {
                     "uuid": "d0b2f747-af29-41eb-a78d-c02abd724d42",
@@ -114,6 +116,7 @@
             "uuid": "613964d7-2957-46df-8bd8-d262b529e4dc",
             "title": "Träning",
             "color": "#00425f",
+            "order": 2,
             "lists": [
                 {
                     "uuid": "d0b2f747-af29-41eb-a78d-c02fbd724d42",

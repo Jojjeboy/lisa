@@ -91,7 +91,7 @@ export class CategoryComponent implements OnInit {
     console.log(this.categoryUuid);
 
     const newList: List = {
-      uuid: self.crypto.randomUUID(),
+      uuid: this.miscService.generateUuid(),
       title: this.listForm.value.title,
       description: this.listForm.value.description,
       starred: false,

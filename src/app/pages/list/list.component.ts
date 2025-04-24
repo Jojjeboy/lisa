@@ -18,6 +18,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { ConfirmDialogComponent } from '../../resuable-componentents/confirm-dialog/confirm-dialog.component';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
+import { MiscService } from '../../service/misc/misc.service';
 
 
 
@@ -66,6 +67,7 @@ export class ListComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private todoService: TodoService,
+    private miscService: MiscService,
     private router: Router // Assuming you have a TodoService to fetch data
   ) { }
 
@@ -105,7 +107,7 @@ export class ListComponent implements OnInit {
   addTodo() {
     this.list.todos.push(
       {
-        uuid: self.crypto.randomUUID(),
+        uuid: this.miscService.generateUuid(),
         title: this.todoForm.value.title,
         completed: false
       }
