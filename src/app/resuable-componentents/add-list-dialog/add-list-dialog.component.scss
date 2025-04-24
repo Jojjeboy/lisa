@@ -1,0 +1,12 @@
+.input-container input,
+.text-area-container textarea{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+    padding: 0.4em;
+    border-radius: 2px;
+    outline: none;
+    border-bottom: 1px solid #333;
+    font-size: 1.1em;
+    width: 90%;
+}

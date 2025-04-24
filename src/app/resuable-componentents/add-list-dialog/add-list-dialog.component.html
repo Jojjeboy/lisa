@@ -2,13 +2,13 @@
     <div class="mb-4">
         <form [formGroup]="listForm" (ngSubmit)="addList()" class="list-add-container mt-4">
             <div class="input-container mb-4">
-                <input type="text" placeholder="Namn på listan" class="w-full " formControlName="title" pInputText />
+                <input type="text" minlength="{{minLength}}" maxlength="{{maxLength}}" placeholder="Namn på listan" formControlName="title" pInputText />
             </div>
             <div class="text-area-container mb-8">
-                <p-floatlabel variant="in">
+                <p-floatlabel>
                     <textarea pTextarea id="over_label" formControlName="description" rows="5" cols="30"
-                        style="resize: none" class="w-full h-full"></textarea>
-                    <label for="over_label">Beskrivning</label>
+                        style="resize: none" class="h-full" placeholder="Beskrivning"></textarea>
+                    
                 </p-floatlabel>
             </div>
             

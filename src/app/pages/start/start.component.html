@@ -16,9 +16,13 @@
     </div>
 </div>
 
-<p>
-    <p-button icon="pi pi-plus" label="Lägg till kategori" (click)="showAddCatDialog()" aria-label="Save" />
-</p>
+<div class="grid mb-16">
+    <div class="col-span-12 lg:col-span-6 xl:col-span-3">
+        <p class="mb-4">
+            <p-button variant="text" [raised]="true" severity="success" icon="pi pi-plus" label="Lägg till kategori" (click)="showAddCatDialog()" aria-label="Save" />
+        </p>
+    </div>
+</div>
 
 <app-add-list-dialog [categoryUuid]="categoryUuid" [visible]="addListDialogVisible" (newItemEvent)="hideAddListDialog()"></app-add-list-dialog>
 <!--p-dialog header="Lägg till ny lista" [modal]="true" [(visible)]="addListDialogVisible" [style]="{ width: '25rem' }">
@@ -44,11 +48,11 @@
 
 
 
-<p-dialog header="Lägg till kateori" [modal]="true" [(visible)]="addCategoryDialogVisible" [style]="{ width: '25rem' }">
+<p-dialog header="Lägg till kateogri" [modal]="true" [(visible)]="addCategoryDialogVisible" [style]="{ width: '25rem' }">
     <div class="flex items-center gap-4 mb-4">
         <form [formGroup]="categoryForm" (ngSubmit)="addCategory()" class="list-add-container mt-4">
             <div class="input-container">
-                <input type="text" placeholder="Namn på kategori" formControlName="title" class="w-full" pInputText />
+                <input type="text" minlength="3" maxlength="25" placeholder="Namn på kategori" formControlName="title" class="w-full" pInputText />
             </div>
             <div class="color-container mb-4 mt-4">
                 <p-floatlabel>
@@ -62,7 +66,7 @@
                 </p-float-label>
             </div>
             <div class="button-container">
-                <p-button icon="pi pi-plus" label="Spara" (click)="addCategory()" />
+                <p-button icon="pi pi-plus" label="Spara" [disabled]="!categoryForm.valid" (click)="addCategory()" />
             </div>
         </form>
 

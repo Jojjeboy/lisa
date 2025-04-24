@@ -48,7 +48,7 @@ export class StartComponent implements OnInit {
     list!: List;
     listForm: any;
     categoryForm: any;
-    dataObserveble!: Subscription;
+    dataObservable!: Subscription;
     position!: string;
     addListDialogVisible: boolean = false;
     addCategoryDialogVisible: boolean = false;
@@ -66,7 +66,7 @@ export class StartComponent implements OnInit {
 
     ngOnInit() {
         //this.data = this.todoService.getData(); 
-        this.dataObserveble = this.todoService.getData().subscribe(data => {
+        this.dataObservable = this.todoService.getData().subscribe(data => {
             this.data = data; // Assuming you have a List interface defined somewhere
         });
 
@@ -74,13 +74,8 @@ export class StartComponent implements OnInit {
 
         console.log(this.data); // Do something with the fetched category data
         
-        this.listForm = this.fb.group({
-            title: ['', Validators.required],
-            description: ['', Validators.required]
-        });
-
         this.categoryForm = this.fb.group({
-            title: ['', Validators.required]
+            title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
         });
 
         this.generateColors();

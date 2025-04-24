@@ -26,7 +26,8 @@ export class AddListDialogComponent implements OnInit {
   @Input() visible!: boolean;
   @Output() newItemEvent = new EventEmitter<boolean>();
 
-
+  minLength: number = 3;
+  maxLength: number = 25;
   listForm: any;
   list!: List;
 
