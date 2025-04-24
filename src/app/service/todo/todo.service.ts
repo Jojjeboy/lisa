@@ -127,7 +127,6 @@ export class TodoService {
         data.categories.forEach((category: Category) => {
           category.lists.forEach((listItem: List) => {
             if (listItem.uuid === listToSave.uuid) {
-              listItem.color = listToSave.color; // Update the list with the new data
               listItem.description = listToSave.description; // Update the list with the new data
               listItem.title = listToSave.title; // Update the list with the new data
               listItem.todos = listToSave.todos; // Update the list with the new data
@@ -224,6 +223,11 @@ export class TodoService {
     });
   }
 
+  /**
+   * 
+   * @param categoryUuid string
+   * @returns void
+   */
   deleteCategory(categoryUuid: string): Observable<void> {
     return new Observable<void>(observer => {
       let data = JSON.parse(this.localStorageService.getData(this.persistenceKey));
@@ -239,6 +243,15 @@ export class TodoService {
     });
   }
 
-
+  getCategoryColor(categoryUuid: string): Observable<string> {
+    return new Observable<string>(observer => {
+      const category = JSON.parse(this.localStorageService.getData(this.persistenceKey)).categories.find((category: Category) => category.uuid === categoryUuid);
+      if (!category) {
+        observer.error(new Error('Category not found'));
+      }
+      observer.next(category.color);
+      observer.complete();
+    });
+  }
 
 }

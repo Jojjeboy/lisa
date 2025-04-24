@@ -55,6 +55,7 @@ export class ListComponent implements OnInit {
   editTodoDialogvisible: boolean = false;
   listEditDialogvisible: boolean = false;
   todo: Todo = { uuid: '', title: '', completed: false };
+  categoryColor: string = '#000000';
 
 
 
@@ -70,6 +71,9 @@ export class ListComponent implements OnInit {
       const listUuid = params['id'];
       this.categoryId = params['categoryId'];
       this.list = this.getList(listUuid); // Fetch the list using the UUID from the route params
+      this.todoService.getCategoryColor(this.categoryId).subscribe(color => {
+        this.categoryColor = color; // Assuming you have a method to get the category color 
+      });
     });
 
     this.todoForm = this.fb.group({
@@ -198,11 +202,6 @@ export class ListComponent implements OnInit {
     this.router.navigate(['/category', this.categoryId]);
   }
 
-
-
-  generateRandomColor() {
-    return '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
-  }
 
 
 

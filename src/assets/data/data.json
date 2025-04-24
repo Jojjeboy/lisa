@@ -3,12 +3,12 @@
         {
             "uuid": "d1f770f9-6703-413d-8d16-56b977e2e9f9",
             "title": "Packning jobb",
+            "color": "#FF5733",
             "lists": [
                 {
                     "uuid": "d0b2f747-af29-41eb-a78d-c02abd724342",
                     "title": "Regionens hus",
                     "description": "Packning för vanlig dag på Regionens Hus Göteborg",
-                    "color": "#FF5733",
                     "starred": true,
                     "lastTouched": "2025-04-02T12:00:00Z",
                     "todos": [
@@ -28,7 +28,6 @@
                     "uuid": "db77e75a-f00c-488c-8780-5ab36b6b240f",
                     "title": "Mölndalskontoret",
                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                    "color": "#FF5733",
                     "starred": true,
                     "lastTouched": "2025-04-02T12:00:00Z",
                     "todos": [
@@ -59,12 +58,12 @@
         {
             "uuid": "613964d7-2977-47df-8bd8-d262b529e4dc",
             "title": "Städning",
+            "color": "#bdd28e",
             "lists": [
                 {
                     "uuid": "d0b2f747-af29-41eb-a78d-c02abd724d42",
                     "title": "Städa toa",
                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                    "color": "#FF5733",
                     "starred": false,
                     "lastTouched": "2025-03-02T12:00:00Z",
                     "todos": [
@@ -84,7 +83,6 @@
                     "uuid": "db77e75a-f00c-488c-8780-5as36b6b240f",
                     "title": "Städa köket",
                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                    "color": "#FF5733",
                     "starred": false,
                     "lastTouched": "2025-03-02T12:00:00Z",
                     "todos": [
@@ -106,6 +104,51 @@
                         {
                             "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
                             "title": "Töm och fyll diskmaskinen",
+                            "completed": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "uuid": "613964d7-2977-46df-8bd8-d262b529e4dc",
+            "title": "Träning",
+            "color": "#00425f",
+            "lists": [
+                {
+                    "uuid": "d0b2f747-af29-41eb-a78d-c02fbd724d42",
+                    "title": "Lörunda distans",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    "starred": false,
+                    "lastTouched": "2025-03-02T12:00:00Z",
+                    "todos": [
+                        {
+                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
+                            "title": "Skor",
+                            "completed": false
+                        },
+                        {
+                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
+                            "title": "Vätskebälte",
+                            "completed": true
+                        }
+                    ]
+                },
+                {
+                    "uuid": "db77e75a-f00c-488c-8780-5as36b6b240f",
+                    "title": "Lörunda kort",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    "starred": false,
+                    "lastTouched": "2025-03-02T12:00:00Z",
+                    "todos": [
+                        {
+                            "uuid": "3df3785e-1c1b-4e79-858d-17cd188b3569",
+                            "title": "Skor",
+                            "completed": false
+                        },
+                        {
+                            "uuid": "3df3783e-1c1b-4e79-858d-17od188b3569",
+                            "title": "Vätskebälte",
                             "completed": true
                         }
                     ]

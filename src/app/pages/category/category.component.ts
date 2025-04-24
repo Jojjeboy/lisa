@@ -18,6 +18,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { AccordionModule } from 'primeng/accordion';
 import { ConfirmDialogComponent } from '../../resuable-componentents/confirm-dialog/confirm-dialog.component';
 import { ListListsComponent } from '../../resuable-componentents/list-lists/list-lists.component';
+import { MiscService } from '../../service/misc/misc.service';
 
 @Component({
   selector: 'app-category',
@@ -54,7 +55,8 @@ export class CategoryComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private todoService: TodoService, // Assuming you have a TodoService to fetch data
+    private todoService: TodoService, 
+    private miscService: MiscService, 
     private fb: FormBuilder
   ) { }
 
@@ -71,7 +73,7 @@ export class CategoryComponent implements OnInit {
     this.listForm = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
-      color: [this.generateRandomColor(), Validators.required],
+      color: [this.miscService.generateRandomColor(), Validators.required],
     });
   }
 
@@ -87,17 +89,18 @@ export class CategoryComponent implements OnInit {
       uuid: self.crypto.randomUUID(),
       title: this.listForm.value.title,
       description: this.listForm.value.description,
-      color: this.listForm.value.color,
       starred: false,
       lastTouched: new Date(),
       todos: []
     };
+
     this.todoService.addList(newList, this.categoryUuid).subscribe(() => {
       console.log('List added successfully!');
       this.addListDialogVisible = false; // Close the dialog after adding the list
       this.listForm.reset();
+
       // Redirect to new list
-      this.router.navigate(['/pages/lists/list', newList.uuid, this.categoryUuid]);
+      this.router.navigate(['/list', newList.uuid, this.categoryUuid]);
     });
   }
 
@@ -128,15 +131,10 @@ export class CategoryComponent implements OnInit {
 
   deleteCategory() {
     this.todoService.deleteCategory(this.categoryUuid).subscribe(() => {
-      this.router.navigate(['/pages/lists']);
+      this.router.navigate(['/lists']);
       console.log('Category deleted successfully!');
     });
   }
-
-  generateRandomColor() {
-    return '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
-  }
-
 
 }
 

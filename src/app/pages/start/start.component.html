@@ -20,24 +20,20 @@
     <p-button icon="pi pi-plus" label="Lägg till kategori" (click)="showAddCatDialog()" aria-label="Save" />
 </p>
 
-<p-dialog header="Lägg till Lista" [modal]="true" [(visible)]="addListDialogVisible" [style]="{ width: '25rem' }">
-    <div class="flex items-center gap-4 mb-4">
+<p-dialog header="Lägg till ny lista" [modal]="true" [(visible)]="addListDialogVisible" [style]="{ width: '25rem' }">
+    <div class="mb-4">
         <form [formGroup]="listForm" (ngSubmit)="addList()" class="list-add-container mt-4">
-            <div class="input-container">
-                <input type="text" placeholder="Namn på listan" formControlName="title" pInputText />
+            <div class="input-container mb-4">
+                <input type="text" placeholder="Namn på listan" class="w-full " formControlName="title" pInputText />
             </div>
-            <div class="text-area-container">
+            <div class="text-area-container mb-8">
                 <p-floatlabel variant="in">
                     <textarea pTextarea id="over_label" formControlName="description" rows="5" cols="30"
-                        style="resize: none" class="h-full"></textarea>
+                        style="resize: none" class="w-full h-full"></textarea>
                     <label for="over_label">Beskrivning</label>
                 </p-floatlabel>
             </div>
-            <div class="color-container">
-                <p-floatlabel>
-                    <p-colorpicker id="color" formControlName="color" inputId="cp-hex" />
-                </p-floatlabel>
-            </div>
+            
             <div class="button-container">
                 <p-button icon="pi pi-plus" [disabled]="!listForm.valid" label="Spara" (click)="addList()" />
             </div>
@@ -61,7 +57,18 @@
     <div class="flex items-center gap-4 mb-4">
         <form [formGroup]="categoryForm" (ngSubmit)="addCategory()" class="list-add-container mt-4">
             <div class="input-container">
-                <input type="text" placeholder="Namn på kategori" formControlName="title" pInputText />
+                <input type="text" placeholder="Namn på kategori" formControlName="title" class="w-full" pInputText />
+            </div>
+            <div class="color-container mb-4 mt-4">
+                <p-floatlabel>
+                    <p>Välj en färg   <p-button variant="text" severity="primary" label="Generera nya färger"
+                        (click)="generateColors()" aria-label="Generera nya färger" class="pl-16"/></p> 
+                    <span class="pick-color" (click)="setColor(c)" *ngFor="let c of colorsToPickfrom" [style.background]="c"></span>
+                </p-floatlabel>
+                <p-float-label class="mt-4">
+                    <p class="">Vald färg</p> 
+                    <span class="pick-color" [style.background]="chosenColor"></span>
+                </p-float-label>
             </div>
             <div class="button-container">
                 <p-button icon="pi pi-plus" label="Spara" (click)="addCategory()" />

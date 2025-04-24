@@ -16,6 +16,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { Router } from '@angular/router';
 import { ListListsComponent } from '../../resuable-componentents/list-lists/list-lists.component';
+import { MiscService } from '../../service/misc/misc.service';
 
 
 
@@ -36,7 +37,8 @@ import { ListListsComponent } from '../../resuable-componentents/list-lists/list
         FloatLabelModule,
         ColorPickerModule,
         ListListsComponent],
-    templateUrl: './start.component.html'
+    templateUrl: './start.component.html',
+    styleUrls: ['./start.component.scss']
 })
 export class StartComponent implements OnInit {
     data!: Data;
@@ -48,11 +50,16 @@ export class StartComponent implements OnInit {
     addListDialogVisible: boolean = false;
     addCategoryDialogVisible: boolean = false;
     categoryUuid!: string;
+    colorsToPickfrom: string[] = [];
+    chosenColor: string = '#000000'; // Default color
 
     constructor(
         private todoService: TodoService,
+        private miscService: MiscService,
         private fb: FormBuilder,
-        private router: Router) { }
+        private router: Router) {
+            
+        }
 
     ngOnInit() {
         //this.data = this.todoService.getData(); 
@@ -60,18 +67,31 @@ export class StartComponent implements OnInit {
             this.data = data; // Assuming you have a List interface defined somewhere
         });
 
-        console.log(this.data); // Do something with the fetched category data
 
+
+        console.log(this.data); // Do something with the fetched category data
+        
         this.listForm = this.fb.group({
             title: ['', Validators.required],
-            description: ['', Validators.required],
-            color: [this.generateRandomColor(), Validators.required],
+            description: ['', Validators.required]
         });
 
         this.categoryForm = this.fb.group({
             title: ['', Validators.required]
         });
+
+        this.generateColors();
+        console.log(this.colorsToPickfrom);
+        this.setColor(this.colorsToPickfrom[this.randomIntFromInterval(0, this.colorsToPickfrom.length - 1)]); // Set the first color as the default color
     }
+
+
+    
+    randomIntFromInterval(min: number, max: number) { // min and max included 
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+  
+
     
 
     showAddListDialog(categoryUuid: string) {
@@ -90,22 +110,19 @@ export class StartComponent implements OnInit {
             uuid: self.crypto.randomUUID(),
             title: this.listForm.value.title,
             description: this.listForm.value.description,
-            color: this.listForm.value.color,
             starred: false,
             lastTouched: new Date(),
             todos: []
         };
+
         this.todoService.addList(newList, this.categoryUuid).subscribe(() => {
             console.log('List added successfully!');
             this.addListDialogVisible = false; // Close the dialog after adding the list
             this.listForm.reset();
+            
             // Redirect to new list
             this.router.navigate(['/list', newList.uuid, this.categoryUuid]);
         });
-
-        //this.data.categories.forEach()
-
-        //this.todoService.addList({ uuid: '', title: '', todos: [] });
     }
 
     addCategory() {
@@ -118,6 +135,7 @@ export class StartComponent implements OnInit {
         const newCategory = {
             uuid: self.crypto.randomUUID(),
             title: this.categoryForm.value.title,
+            color: this.chosenColor,
             lists: []
         };
 
@@ -129,9 +147,15 @@ export class StartComponent implements OnInit {
         });
     }
 
+    setColor(color: string) {
+        this.chosenColor = color;
+    }
 
-    generateRandomColor() {
-        return '#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0');
+    generateColors() {
+        this.colorsToPickfrom = []; // Clear the existing colors
+        for (let i = 0; i < 12; i++) {
+            this.colorsToPickfrom.push(this.miscService.generateRandomColor());
+        }
     }
 
 }
