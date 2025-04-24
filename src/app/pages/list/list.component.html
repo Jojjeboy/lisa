@@ -12,15 +12,14 @@
                     <p>{{ list.description }}</p>
                     <p-divider *ngIf="list.todos.length " />
                     <p class="text-muted-color" *ngIf="list.todos.length < 1">Inga todos i denna lista, lägg till nedan</p>
-                    <div class="checkbox-list-container" *ngFor="let todo of list.todos">
+                    <div class="checkbox-list-container mb-2" *ngFor="let todo of list.todos">
                         <div>
                             <label>
-                                <input type="checkbox" (change)="toggleDone()" [ngModel]="todo.completed"
-                                    (ngModelChange)="todo.completed = $event" />
+                                <p-toggleswitch [(ngModel)]="todo.completed" (onChange)="toggleDone()" />
                             </label>
                         </div>
                         <div><span class="checkbox__inner"></span>
-                            <span class="checkbox-text">{{ todo.title }}</span>
+                            <span class="checkbox-text" [ngClass]="{'completed': todo.completed}">{{ todo.title }}</span>
                         </div>
                         <div>
                             <p-button variant="text" icon="pi pi-pencil" (click)="showEditTodoDialog(todo)" aria-label="Save" />
@@ -29,7 +28,7 @@
 
                     <form [formGroup]="todoForm" (ngSubmit)="addTodo()" class="list-add-container mt-4">
                         <div class="input-container">
-                            <input type="text" placeholder="Skriv text..." formControlName="title" pInputText />
+                            <input type="text" placeholder="Lägg till punkt..." formControlName="title" pInputText />
                         </div>
                         <div class="button-container">
                             <p-button icon="pi pi-plus" [disabled]="todoForm.invalid" label="Spara" (click)="addTodo()" />

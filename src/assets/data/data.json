@@ -1,43 +1,43 @@
 {
     "categories": [
         {
-            "uuid": "d1f770f9-6703-413d-8d16-56b977e2e9f9",
+            "uuid": "d1f710f9-6703-413d-8d16-56b977e2e9f9",
             "title": "Packning jobb",
             "color": "#FF5733",
             "lists": [
                 {
-                    "uuid": "d0b2f747-af29-41eb-a78d-c02abd724342",
+                    "uuid": "d0b2f757-af29-41eb-a78d-c02abd724342",
                     "title": "Regionens hus",
                     "description": "Packning för vanlig dag på Regionens Hus Göteborg",
                     "starred": true,
                     "lastTouched": "2025-04-02T12:00:00Z",
                     "todos": [
                         {
-                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
+                            "uuid": "3df3983e-1c1b-4e79-858d-17cd188b3569",
                             "title": "SITHS-kort",
                             "completed": false
                         },
                         {
-                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
+                            "uuid": "3df3784e-1c1b-4e79-858d-17cd188b3569",
                             "title": "Glasögon",
                             "completed": true
                         }
                     ]
                 },
                 {
-                    "uuid": "db77e75a-f00c-488c-8780-5ab36b6b240f",
+                    "uuid": "db77e75a-f00c-488c-8780-5ab37b6b240f",
                     "title": "Mölndalskontoret",
                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
                     "starred": true,
                     "lastTouched": "2025-04-02T12:00:00Z",
                     "todos": [
                         {
-                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
+                            "uuid": "3df3783e-1c1b-4e89-858d-17cd188b3569",
                             "title": "Glasögon",
                             "completed": false
                         },
                         {
-                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
+                            "uuid": "3df3783e-1c1b-4e79-858d-17cr188b3569",
                             "title": "SITHS-kort",
                             "completed": true
                         },
@@ -47,7 +47,7 @@
                             "completed": true
                         },
                         {
-                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
+                            "uuid": "3df3783e-1c1b-4e79-858d-17ca188b3569",
                             "title": "Leave stuff at the office",
                             "completed": true
                         }
@@ -56,7 +56,7 @@
             ]
         },
         {
-            "uuid": "613964d7-2977-47df-8bd8-d262b529e4dc",
+            "uuid": "613964d7-2977-47df-8bd8-d262b528e4dc",
             "title": "Städning",
             "color": "#bdd28e",
             "lists": [
@@ -68,7 +68,7 @@
                     "lastTouched": "2025-03-02T12:00:00Z",
                     "todos": [
                         {
-                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
+                            "uuid": "3df3783e-1c1b-4e79-858d-17cd189b3569",
                             "title": "Rengör toastolen",
                             "completed": false
                         },
@@ -80,19 +80,19 @@
                     ]
                 },
                 {
-                    "uuid": "db77e75a-f00c-488c-8780-5as36b6b240f",
+                    "uuid": "db77e75a-f00c-488c-8780-5as36b6b340f",
                     "title": "Städa köket",
                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
                     "starred": false,
                     "lastTouched": "2025-03-02T12:00:00Z",
                     "todos": [
                         {
-                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
+                            "uuid": "3df3784e-1c1b-4e79-858d-17cd188b3569",
                             "title": "Släng soporna",
                             "completed": false
                         },
                         {
-                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
+                            "uuid": "3df3783e-1c2b-4e79-858d-17cd188b3569",
                             "title": "Gå med återvinningen",
                             "completed": true
                         },
@@ -102,7 +102,7 @@
                             "completed": true
                         },
                         {
-                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
+                            "uuid": "3df3783e-1c1b-4e78-858d-17cd188b3569",
                             "title": "Töm och fyll diskmaskinen",
                             "completed": true
                         }
@@ -111,24 +111,24 @@
             ]
         },
         {
-            "uuid": "613964d7-2977-46df-8bd8-d262b529e4dc",
+            "uuid": "613964d7-2957-46df-8bd8-d262b529e4dc",
             "title": "Träning",
             "color": "#00425f",
             "lists": [
                 {
                     "uuid": "d0b2f747-af29-41eb-a78d-c02fbd724d42",
-                    "title": "Lörunda distans",
+                    "title": "Löprunda distans",
                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
                     "starred": false,
                     "lastTouched": "2025-03-02T12:00:00Z",
                     "todos": [
                         {
-                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
+                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188c3569",
                             "title": "Skor",
                             "completed": false
                         },
                         {
-                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b3569",
+                            "uuid": "3df3783e-1c1b-4e79-858d-17cd188b4569",
                             "title": "Vätskebälte",
                             "completed": true
                         }
@@ -136,18 +136,18 @@
                 },
                 {
                     "uuid": "db77e75a-f00c-488c-8780-5as36b6b240f",
-                    "title": "Lörunda kort",
+                    "title": "Löprunda kort",
                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
                     "starred": false,
                     "lastTouched": "2025-03-02T12:00:00Z",
                     "todos": [
                         {
-                            "uuid": "3df3785e-1c1b-4e79-858d-17cd188b3569",
+                            "uuid": "3df3785e-1c1b-4e79-858d-17cd188b3169",
                             "title": "Skor",
                             "completed": false
                         },
                         {
-                            "uuid": "3df3783e-1c1b-4e79-858d-17od188b3569",
+                            "uuid": "3df3783e-1c1b-4e79-858d-17od188b3589",
                             "title": "Vätskebälte",
                             "completed": true
                         }

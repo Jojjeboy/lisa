@@ -19,6 +19,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { ConfirmDialogComponent } from '../../resuable-componentents/confirm-dialog/confirm-dialog.component';
 import { ListListsComponent } from '../../resuable-componentents/list-lists/list-lists.component';
 import { MiscService } from '../../service/misc/misc.service';
+import { AddListDialogComponent } from '../../resuable-componentents/add-list-dialog/add-list-dialog.component';
 
 @Component({
   selector: 'app-category',
@@ -38,7 +39,8 @@ import { MiscService } from '../../service/misc/misc.service';
     AccordionModule,
     ColorPickerModule,
     ConfirmDialogComponent,
-  ListListsComponent],
+    ListListsComponent,
+    AddListDialogComponent],
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss'
 })
@@ -55,8 +57,8 @@ export class CategoryComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private todoService: TodoService, 
-    private miscService: MiscService, 
+    private todoService: TodoService,
+    private miscService: MiscService,
     private fb: FormBuilder
   ) { }
 
@@ -71,15 +73,18 @@ export class CategoryComponent implements OnInit {
 
 
     this.listForm = this.fb.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required],
-      color: [this.miscService.generateRandomColor(), Validators.required],
+      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
+      description: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(1000)]]
     });
   }
 
 
   showAddListDialog() {
     this.addListDialogVisible = true;
+  }
+
+  hideAddListDialog() {
+    this.addListDialogVisible = false;
   }
 
   addList() {
@@ -105,28 +110,26 @@ export class CategoryComponent implements OnInit {
   }
 
 
-  showEditCategoryDialog(){
+  showEditCategoryDialog() {
     this.editCategoryDialogVisible = true;
     this.categoryOriginalTitle = this.category.title;
   }
 
 
- 
-
-  discardCategoryEdit(){
+  discardCategoryEdit() {
     this.category.title = this.categoryOriginalTitle;
     this.editCategoryDialogVisible = false;
   }
 
   updateCategory() {
-    
+
     this.todoService.updateCategory(this.category).subscribe(() => {
       console.log('Category updated successfully!');
       this.editCategoryDialogVisible = false; // Close the dialog after updating the category
     }, error => {
       console.error('Error updating category:', error);
     });
-    
+
   }
 
   deleteCategory() {

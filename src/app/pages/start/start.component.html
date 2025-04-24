@@ -20,7 +20,8 @@
     <p-button icon="pi pi-plus" label="Lägg till kategori" (click)="showAddCatDialog()" aria-label="Save" />
 </p>
 
-<p-dialog header="Lägg till ny lista" [modal]="true" [(visible)]="addListDialogVisible" [style]="{ width: '25rem' }">
+<app-add-list-dialog [categoryUuid]="categoryUuid" [visible]="addListDialogVisible" (newItemEvent)="hideAddListDialog()"></app-add-list-dialog>
+<!--p-dialog header="Lägg till ny lista" [modal]="true" [(visible)]="addListDialogVisible" [style]="{ width: '25rem' }">
     <div class="mb-4">
         <form [formGroup]="listForm" (ngSubmit)="addList()" class="list-add-container mt-4">
             <div class="input-container mb-4">
@@ -38,18 +39,8 @@
                 <p-button icon="pi pi-plus" [disabled]="!listForm.valid" label="Spara" (click)="addList()" />
             </div>
         </form>
-
-        <!--input pInputText id="title" [(ngModel)]="todo.title" class="flex-auto" autocomplete="off" /-->
     </div>
-
-    <div class="">
-        <div class="flex justify-end">
-            <!--p-button label="Radera" class="pr-20" severity="danger" (click)="deleteTodo(todo)" />
-            <p-button label="Ångra" class="pr-2 pl-16" severity="secondary" (click)="discard()" />
-            <p-button label="Spara" (click)="updateTodo(todo)" /-->
-        </div>
-    </div>
-</p-dialog>
+</p-dialog-->
 
 
 

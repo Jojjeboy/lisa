@@ -17,6 +17,7 @@ import { DialogModule } from 'primeng/dialog';
 import { AccordionModule } from 'primeng/accordion';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { ConfirmDialogComponent } from '../../resuable-componentents/confirm-dialog/confirm-dialog.component';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
 
 
 
@@ -35,7 +36,9 @@ import { ConfirmDialogComponent } from '../../resuable-componentents/confirm-dia
     ReactiveFormsModule,
     DialogModule,
     AccordionModule,
-    FloatLabelModule, ConfirmDialogComponent],
+    FloatLabelModule, 
+    ConfirmDialogComponent,
+    ToggleSwitchModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
   standalone: true
@@ -77,7 +80,7 @@ export class ListComponent implements OnInit {
     });
 
     this.todoForm = this.fb.group({
-      title: ['', Validators.required],
+      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
       completed: [false]
     });
 

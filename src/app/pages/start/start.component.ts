@@ -17,6 +17,7 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 import { Router } from '@angular/router';
 import { ListListsComponent } from '../../resuable-componentents/list-lists/list-lists.component';
 import { MiscService } from '../../service/misc/misc.service';
+import { AddListDialogComponent } from '../../resuable-componentents/add-list-dialog/add-list-dialog.component';
 
 
 
@@ -36,7 +37,9 @@ import { MiscService } from '../../service/misc/misc.service';
         TextareaModule,
         FloatLabelModule,
         ColorPickerModule,
-        ListListsComponent],
+        ListListsComponent,
+        AddListDialogComponent
+    ],
     templateUrl: './start.component.html',
     styleUrls: ['./start.component.scss']
 })
@@ -101,6 +104,10 @@ export class StartComponent implements OnInit {
 
     showAddCatDialog() {
         this.addCategoryDialogVisible = true;
+    }
+
+    hideAddListDialog() {
+        this.addListDialogVisible = false;
     }
 
     addList() {
