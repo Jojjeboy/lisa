@@ -12,7 +12,7 @@ export class CategoryService {
   constructor(private localStorageService: LocalstorageService) { }
 
 
-  upCategory(categoryUuid: string): void {
+  upCategory(categoryUuid: string): Category[] {
 
     // 1. Hämta alla categorier
     let categories = JSON.parse(this.localStorageService.getData(this.persistenceKey)).categories;
@@ -33,14 +33,16 @@ export class CategoryService {
     } else {
       throw new Error('No next category found');
     }
-    
+
+    categories = this.sortCategories(categories); // Sortera kategorierna efter ordning
 
     this.localStorageService.setData(this.persistenceKey, JSON.stringify({ categories }));
+    return categories;
   }
 
 
 
-  downCategory(categoryUuid: string): void {
+  downCategory(categoryUuid: string): Category[] {
     // 1. Hämta alla categorier
     let categories = JSON.parse(this.localStorageService.getData(this.persistenceKey)).categories;
     // 2. Hämta kategorin du vill uppa ordningen på
@@ -61,7 +63,16 @@ export class CategoryService {
       throw new Error('No next category found');
     }
     
-
+    categories = this.sortCategories(categories); // Sortera kategorierna efter ordning
     this.localStorageService.setData(this.persistenceKey, JSON.stringify({ categories }));
+    return categories;
   }
+
+
+
+  sortCategories(categories: Category[]): Category[] {
+    return categories.sort((a, b) => a.order - b.order);
+    
+  }
+  
 }

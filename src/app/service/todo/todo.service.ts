@@ -160,7 +160,7 @@ export class TodoService {
             category.lists.push(list); // Add the new list to the category
           }
         });
-        this.localStorageService.setData(JSON.stringify(data), this.persistenceKey); // Save the updated data to local storage
+        this.localStorageService.setData(this.persistenceKey, JSON.stringify(data)); // Save the updated data to local storage
         observer.next();
         observer.complete();
       }
@@ -180,7 +180,7 @@ export class TodoService {
       }
       else {
         data.categories.push(category); // Add the new category to the data
-        this.localStorageService.setData(JSON.stringify(data), this.persistenceKey); // Save the updated data to local storage
+        this.localStorageService.setData(this.persistenceKey, JSON.stringify(data)); // Save the updated data to local storage
         observer.next();
         observer.complete();
       }
@@ -199,7 +199,7 @@ export class TodoService {
             cat.title = category.title;
           }
         });
-        this.localStorageService.setData(JSON.stringify(data), this.persistenceKey);
+        this.localStorageService.setData(this.persistenceKey,JSON.stringify(data));
         observer.next();
         observer.complete();
       }
@@ -216,7 +216,7 @@ export class TodoService {
         data.categories.forEach((category: Category) => {
           category.lists = category.lists.filter((list: List) => list.uuid !== listUuid); // Remove the list from the category
         });
-        this.localStorageService.setData(JSON.stringify(data), this.persistenceKey); // Save the updated data to local storage
+        this.localStorageService.setData(this.persistenceKey, JSON.stringify(data)); // Save the updated data to local storage
         observer.next();
         observer.complete();
       }
@@ -236,7 +236,7 @@ export class TodoService {
       }
       else {
         data.categories = data.categories.filter((category: Category) => category.uuid !== categoryUuid); // Remove the category from the data
-        this.localStorageService.setData(JSON.stringify(data), this.persistenceKey); // Save the updated data to local storage
+        this.localStorageService.setData(this.persistenceKey, JSON.stringify(data)); // Save the updated data to local storage
         observer.next();
         observer.complete();
       }

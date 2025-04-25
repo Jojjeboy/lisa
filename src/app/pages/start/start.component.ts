@@ -67,17 +67,14 @@ export class StartComponent implements OnInit {
         }
 
     ngOnInit() {
-        this.dataObservable = this.todoService.getData().subscribe(data => {
-            this.data = data; // Assuming you have a List interface defined somewhere
-            this.data.categories = this.data.categories.sort((b, a) => b.order - a.order);
-        });
+        this.getData();
 
 
 
-        console.log(this.data); // Do something with the fetched category data
+        console.table(this.data.categories); // Do something with the fetched category data
         
         this.categoryForm = this.fb.group({
-            title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
+            title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]]
         });
 
         this.generateColors();
@@ -85,12 +82,23 @@ export class StartComponent implements OnInit {
     }
 
 
+    getData() {
+        this.dataObservable = this.todoService.getData().subscribe(data => {
+            this.data = data; // Assuming you have a List interface defined somewhere
+            this.data.categories = this.data.categories.sort((b, a) => b.order - a.order);
+        });
+    }
+
+
     upCategory(categoryUuid: string) {
-        this.categoryService.upCategory(categoryUuid);
+        this.data.categories = this.categoryService.upCategory(categoryUuid);
+        console.table(this.data.categories);
+        
     }
 
     downCategory(categoryUuid: string) {
-        this.categoryService.downCategory(categoryUuid);
+        this.data.categories = this.categoryService.downCategory(categoryUuid);
+        console.table(this.data.categories);
     }
 
 
@@ -138,15 +146,14 @@ export class StartComponent implements OnInit {
     addCategory() {
         //this.router.navigate(['/category', this.category.uuid]);  
         console.log(this.categoryForm.value.title);
-        console.log('------');
-        console.log(this.categoryForm.value.description);
+        
 
 
         const newCategory = {
             uuid: this.miscService.generateUuid(),
             title: this.categoryForm.value.title,
             color: this.chosenColor,
-            order: this.data.categories.length + 1,
+            order: this.data.categories.length,
             lists: []
         };
 

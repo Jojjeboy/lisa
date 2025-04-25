@@ -134,7 +134,7 @@ export class CategoryComponent implements OnInit {
 
   deleteCategory() {
     this.todoService.deleteCategory(this.categoryUuid).subscribe(() => {
-      this.router.navigate(['/lists']);
+      this.router.navigate(['/']);
       console.log('Category deleted successfully!');
     });
   }
