@@ -1,15 +1,20 @@
 <div class="grid mb-8" *ngFor="let category of data.categories; let i = index">
     <div class="col-span-12 lg:col-span-6 xl:col-span-3">
         <div class="card mb-0">
-            <div class="flex justify-between mt-2">
-                <div>
-                    <h4><a [routerLink]="['/category/', category.uuid]">{{ category.title }}</a> <br />
-                        <i class="pi pi-chevron-up" *ngIf="category.order > 0" (click)="setCategoryOrder(category.uuid, 'up')"></i>
-                        &nbsp;
-                        <i class="pi pi-chevron-down" *ngIf="category.order < (data.categories.length - 1)"
-                            (click)="setCategoryOrder(category.uuid, 'down')"></i>
-                    </h4>
-                    <p-divider *ngIf="category.lists.length > 0" />
+            <div class=" mt-2">
+                <div class="">
+                    <div class="category-top">
+                        <div class="category.title">
+                            <h4><a [routerLink]="['/category/', category.uuid]">{{ category.title }}</a></h4>
+                        </div>
+                        <div class="category-order">
+                            <i class="pi pi-chevron-up" *ngIf="category.order > 0"
+                                (click)="setCategoryOrder(category.uuid, 'up')"></i>
+                            &nbsp; 
+                            <i class="pi pi-chevron-down pl-4" *ngIf="category.order < (data.categories.length - 1)"
+                                (click)="setCategoryOrder(category.uuid, 'down')"></i>
+                        </div>
+                    </div>
                     <app-list-lists [category]="category"></app-list-lists>
                 </div>
             </div>

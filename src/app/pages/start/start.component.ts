@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Divider } from 'primeng/divider';
 import { TodoService } from '../../service/todo/todo.service';
 import { Data } from '../../interface/Data.interface';
 import { RouterModule } from '@angular/router';
@@ -27,8 +26,6 @@ import { CategoryService } from '../../service/category/category.service';
     standalone: true,
     imports: [
         CommonModule,
-        
-        Divider,
         FormsModule,
         RouterModule,
         InputTextModule,
