@@ -90,22 +90,10 @@ export class StartComponent implements OnInit {
     }
 
 
-    upCategory(categoryUuid: string) {
-        this.data.categories = this.categoryService.upCategory(categoryUuid);
-        console.table(this.data.categories);
-        
-    }
-
-    downCategory(categoryUuid: string) {
-        this.data.categories = this.categoryService.downCategory(categoryUuid);
+    setCategoryOrder(categoryUuid: string, direction: string) {
+        this.data.categories = this.categoryService.setCategoryOrder(categoryUuid, direction);
         console.table(this.data.categories);
     }
-
-
-    
-    
-  
-
     
 
     showAddListDialog(categoryUuid: string) {
