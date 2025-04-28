@@ -1,6 +1,6 @@
 {
     "name": "lisa",
-    "version": "19.2.0",
+    "version": "19.3.0",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
@@ -57,5 +57,8 @@
         "tailwindcss": "^3.4.17",
         "ts-node": "^10.9.2",
         "typescript": "~5.6.2"
+    },
+    "overrides": {
+        "graceful-fs": "^4.2.11"
     }
 }
