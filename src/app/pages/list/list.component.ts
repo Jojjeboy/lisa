@@ -19,6 +19,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { ConfirmDialogComponent } from '../../resuable-componentents/confirm-dialog/confirm-dialog.component';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { MiscService } from '../../service/misc/misc.service';
+import { TreeModule } from 'primeng/tree';
 
 
 
@@ -39,7 +40,9 @@ import { MiscService } from '../../service/misc/misc.service';
     AccordionModule,
     FloatLabelModule, 
     ConfirmDialogComponent,
-    ToggleSwitchModule],
+    ToggleSwitchModule,
+    TreeModule
+  ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
   standalone: true
@@ -60,6 +63,8 @@ export class ListComponent implements OnInit {
   listEditDialogvisible: boolean = false;
   todo: Todo = { uuid: '', title: '', completed: false };
   categoryColor: string = '#000000';
+  todoMinLength: number = 3; // Maximum length for the todo title
+  todoMaxLength: number = 25; // Maximum length for the todo title
 
 
 
@@ -82,7 +87,7 @@ export class ListComponent implements OnInit {
     });
 
     this.todoForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
+      title: ['', [Validators.required, Validators.minLength(this.todoMinLength), Validators.maxLength(this.todoMaxLength)]],
       completed: [false]
     });
 

@@ -28,7 +28,7 @@
 
                     <form [formGroup]="todoForm" (ngSubmit)="addTodo()" class="list-add-container mt-4">
                         <div class="input-container">
-                            <input type="text" placeholder="Lägg till punkt..." formControlName="title" pInputText />
+                            <input type="text" placeholder="Lägg till punkt..." formControlName="title" [minlength]="todoMinLength" [maxlength]="todoMaxLength" pInputText />
                         </div>
                         <div class="button-container">
                             <p-button icon="pi pi-plus" [disabled]="todoForm.invalid" label="Spara" (click)="addTodo()" />
