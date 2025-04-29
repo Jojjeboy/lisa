@@ -7,7 +7,7 @@ import { CategoryComponent } from './app/pages/category/category.component';
 
 export const appRoutes: Routes = [
     {
-        path: '',
+        path: 'lisa',
         component: AppLayout,
         children: [
             { path: '', component: StartComponent },
