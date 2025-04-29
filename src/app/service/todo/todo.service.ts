@@ -41,7 +41,7 @@ export class TodoService {
     return new Observable<void>(observer => {
 
       // 1. Spara i local storage
-      this.localStorageService.setData(JSON.stringify(data), this.persistenceKey);
+      this.localStorageService.setData(this.persistenceKey, JSON.stringify(data));
 
       observer.next();
       observer.complete();
@@ -134,7 +134,7 @@ export class TodoService {
             }
           });
         });
-        this.localStorageService.setData(JSON.stringify(data), this.persistenceKey); // Save the updated data to local storage
+        this.localStorageService.setData(this.persistenceKey, JSON.stringify(data)); // Save the updated data to local storage
         observer.next();
         observer.complete();
       });
