@@ -19,7 +19,7 @@
                     "options": {
                         "outputPath": {
                             "base": "docs",
-                            "browser": "."
+                            "browser": ""
                         },  
                         "index": "src/index.html",
                         "browser": "src/main.ts",

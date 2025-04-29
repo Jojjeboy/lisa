@@ -22,15 +22,6 @@ echo "Uplevel: "$upLevel
 
 echo "********** Running script **************"
 
-# När detta skriptet blir globalt och inte ligger i repot kan denna koden moddas och sen användas
-# REPONAME=reachIt
-# if [ "${REPONAME}" = "${DYNAMICREPONAME}" ]; then
-#     echo "Yeeeey correct repo!!"
-# else
-#     echo "Du står i fel repo, gå till mappen där $REPONAME finns.\n*** Script stoppat ***"
-#     exit 0;
-# fi
-
 
 if [ $# -eq 0 ]; then
   echo "Du måste skicka med commit meddelande.\n*** Script stoppat ***"
