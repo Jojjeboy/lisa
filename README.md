@@ -74,7 +74,15 @@ For more information on using the Angular CLI, including detailed command refere
 ```bash
 npm run build --output-path="docs" --base-href=""
 ```
+## Ändra
+```bash
+<base href="/">
+```
 
+Till: 
+```bash
+<base href="">
+```
 
 
 https://github.com/Codemelia/basic-todo-app/blob/master/src/app/services/storage.service.ts
