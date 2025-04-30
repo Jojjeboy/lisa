@@ -137,6 +137,26 @@ export class CategoryComponent implements OnInit {
       this.router.navigate(['/']);
       console.log('Category deleted successfully!');
     });
+    const categories = this.reOrderCategories(); // Call the reorderCategories method after deleting the category
+
+    this.todoService.getData().subscribe((data) => {
+      data.categories = categories; // Update the categories in the data object
+      this.todoService.setData(data).subscribe(() => {
+        console.log('Categories updated successfully!');
+        this.router
+      });
+    });  
+  }
+  
+  reOrderCategories(): Category[] {
+    let reorderedCategories: Category[] = [];
+    this.todoService.getCategories().subscribe((categories) => {
+      for (let i = 0; i < categories.length; i++) {
+        categories[i].order = i + 1; // Update the order property based on the new index
+      }
+      reorderedCategories = categories.sort((a: any, b: any) => a.order - b.order); // Sort the categories based on the order property
+    });
+    return reorderedCategories;
   }
 
 }

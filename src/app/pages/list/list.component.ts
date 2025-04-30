@@ -52,7 +52,7 @@ export class ListComponent implements OnInit {
   list!: List;
   categoryId!: string;
   listObserveble!: Subscription;
-  newTodo: Todo = { uuid: '', title: '', completed: false };
+  newTodo: Todo = { uuid: '', title: '', completed: false, order: 0 };
   todoForm: any; // FormGroup for the todo form
   listForm: any; // FormGroup for the list form
   todoOriginalTitle!: string; // FormGroup for the todo form
@@ -61,7 +61,7 @@ export class ListComponent implements OnInit {
   position!: string;
   editTodoDialogvisible: boolean = false;
   listEditDialogvisible: boolean = false;
-  todo: Todo = { uuid: '', title: '', completed: false };
+  todo: Todo = { uuid: '', title: '', completed: false, order: 0 };
   categoryColor: string = '#000000';
   todoMinLength: number = 3; // Maximum length for the todo title
   todoMaxLength: number = 25; // Maximum length for the todo title
@@ -114,7 +114,8 @@ export class ListComponent implements OnInit {
       {
         uuid: this.miscService.generateUuid(),
         title: this.todoForm.value.title,
-        completed: false
+        completed: false,
+        order: this.list.todos.length + 1 // Set the order based on the current length of the todos array +1
       }
     );
     this.saveTodo();
@@ -144,7 +145,31 @@ export class ListComponent implements OnInit {
   deleteTodo(todo: Todo) {
     this.list.todos = this.list.todos.filter(t => t.uuid !== todo.uuid);
     this.editTodoDialogvisible = false;
+    this.reorderTodos();
     this.saveTodo();
+  }
+
+  reOrderTodo(todo: Todo, direction: string) {
+    const index = this.list.todos.findIndex(t => t.uuid === todo.uuid);
+    if (direction === 'up' && index > 0) {
+      const temp = this.list.todos[index - 1];
+      this.list.todos[index - 1] = this.list.todos[index];
+      this.list.todos[index] = temp;
+    } else if (direction === 'down' && index < this.list.todos.length - 1) {
+      const temp = this.list.todos[index + 1];
+      this.list.todos[index + 1] = this.list.todos[index];
+      this.list.todos[index] = temp;
+    }
+    this.editTodoDialogvisible = false;
+    //this.reorderTodos();
+    this.saveTodo();
+  }
+
+  reorderTodos(): void {
+    for(let i = 0; i < this.list.todos.length; i++) {
+      this.list.todos[i].order = i + 1; // Update the order property based on the new index
+    }
+    this.list.todos.sort((a, b) => a.order - b.order); // Sort the todos based on the order property
   }
 
   showPositionDialog(position: string) {

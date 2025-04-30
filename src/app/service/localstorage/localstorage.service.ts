@@ -1,9 +1,4 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { List } from '../../interface/List.interface';
-import { Todo } from '../../interface/Todo.interface';
-import { Data } from '../../interface/Data.interface';
-import { Category } from '../../interface/Category.interface';
 
 @Injectable({
   providedIn: 'root'

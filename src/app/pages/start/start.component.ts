@@ -18,6 +18,8 @@ import { ListListsComponent } from '../../resuable-componentents/list-lists/list
 import { MiscService } from '../../service/misc/misc.service';
 import { AddListDialogComponent } from '../../resuable-componentents/add-list-dialog/add-list-dialog.component';
 import { CategoryService } from '../../service/category/category.service';
+import { LocalstorageService } from '../../service/localstorage/localstorage.service';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -50,12 +52,16 @@ export class StartComponent implements OnInit {
     position!: string;
     addListDialogVisible: boolean = false;
     addCategoryDialogVisible: boolean = false;
+    resetDataBtn: boolean = true;  // For development purposes only
+    resetDataDialogVisible: boolean = false;  // For development purposes only
     categoryUuid!: string;
     colorsToPickfrom: string[] = [];
     chosenColor: string = '#000000'; // Default color
 
     constructor(
         private categoryService: CategoryService,
+        private localStorageService: LocalstorageService,
+        private http: HttpClient,
         private todoService: TodoService,
         private miscService: MiscService,
         private fb: FormBuilder,
@@ -101,6 +107,44 @@ export class StartComponent implements OnInit {
     showAddCatDialog() {
         this.addCategoryDialogVisible = true;
     }
+
+    /* ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''*/
+    /* ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''*/
+    /* ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''*/
+    /* ''''''''''''''''''''''''' För utvecklingsyfte '''''''''''''''''''''''''*/
+    /* ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''*/
+    /* ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''*/
+    /* ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''*/
+    showResetLSDataDialog() {
+        this.resetDataDialogVisible = true;
+    }
+
+    dontresetLSData() {
+        this.resetDataDialogVisible = false;
+    }
+
+    resetLSData() { 
+        this.localStorageService.clearData('lisa'); // Clear existing data in localStorage
+        
+        const jsonData = this.getDataFromJson();
+        const parsedData = JSON.parse(jsonData);
+        this.localStorageService.setData('lisa', JSON.stringify(parsedData));
+        this.resetDataDialogVisible = false;
+        this.todoService.getData().subscribe(data => {
+            this.data = data; // Assuming you have a List interface defined somewhere
+            this.data.categories = this.data.categories.sort((b, a) => b.order - a.order);
+        });
+    }
+
+    getDataFromJson(): string {
+        return '{"categories":[{"uuid":"d1f710f9-6703-413d-8d16-56b977e2e9f9","title":"Packning jobb","color":"#FF5733","order":0,"lists":[{"uuid":"d0b2f757-af29-41eb-a78d-c02abd724342","title":"Regionens hus","description":"Packning för vanlig dag på Regionens Hus Göteborg","starred":true,"lastTouched":"2025-04-02T12:00:00Z","todos":[{"uuid":"3df3983e-1c1b-4e79-858d-17cd188b3569","title":"SITHS-kort","completed":false},{"uuid":"3df3784e-1c1b-4e79-858d-17cd188b3569","title":"Glasögon","completed":true}]},{"uuid":"db77e75a-f00c-488c-8780-5ab37b6b240f","title":"Mölndalskontoret","description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.","starred":true,"lastTouched":"2025-04-02T12:00:00Z","todos":[{"uuid":"3df3783e-1c1b-4e89-858d-17cd188b3569","title":"Glasögon","completed":false},{"uuid":"3df3783e-1c1b-4e79-858d-17cr188b3569","title":"SITHS-kort","completed":true},{"uuid":"3df3783e-1c1b-4e79-858d-17cd188b3569","title":"Matlåda","completed":true},{"uuid":"3df3783e-1c1b-4e79-858d-17ca188b3569","title":"Leave stuff at the office","completed":true}]}]},{"uuid":"613964d7-2977-47df-8bd8-d262b528e4dc","title":"Städning","color":"#bdd28e","order":1,"lists":[{"uuid":"d0b2f747-af29-41eb-a78d-c02abd724d42","title":"Städa toa","description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.","starred":false,"lastTouched":"2025-03-02T12:00:00Z","todos":[{"uuid":"3df3783e-1c1b-4e79-858d-17cd189b3569","title":"Rengör toastolen","completed":false},{"uuid":"3df3783e-1c1b-4e79-858d-17cd188b3569","title":"Rengör handfatet","completed":true}]},{"uuid":"db77e75a-f00c-488c-8780-5as36b6b340f","title":"Städa köket","description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.","starred":false,"lastTouched":"2025-03-02T12:00:00Z","todos":[{"uuid":"3df3784e-1c1b-4e79-858d-17cd188b3569","title":"Släng soporna","completed":false},{"uuid":"3df3783e-1c2b-4e79-858d-17cd188b3569","title":"Gå med återvinningen","completed":true},{"uuid":"3df3783e-1c1b-4e79-858d-17cd188b3569","title":"Torka av ytorna","completed":true},{"uuid":"3df3783e-1c1b-4e78-858d-17cd188b3569","title":"Töm och fyll diskmaskinen","completed":true}]}]},{"uuid":"613964d7-2957-46df-8bd8-d262b529e4dc","title":"Träning","color":"#00425f","order":2,"lists":[{"uuid":"d0b2f747-af29-41eb-a78d-c02fbd724d42","title":"Löprunda distans","description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.","starred":false,"lastTouched":"2025-03-02T12:00:00Z","todos":[{"uuid":"3df3783e-1c1b-4e79-858d-17cd188c3569","title":"Skor","completed":false},{"uuid":"3df3783e-1c1b-4e79-858d-17cd188b4569","title":"Vätskebälte","completed":true}]},{"uuid":"db77e75a-f00c-488c-8780-5as36b6b240f","title":"Löprunda kort","description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.","starred":false,"lastTouched":"2025-03-02T12:00:00Z","todos":[{"uuid":"3df3785e-1c1b-4e79-858d-17cd188b3169","title":"Skor","completed":false},{"uuid":"3df3783e-1c1b-4e79-858d-17od188b3589","title":"Vätskebälte","completed":true}]}]}]}'
+    }
+    
+    /* ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''*/
+    /* ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''*/
+    /* ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''*/
+    /* ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''*/
+    /* ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''*/
 
     hideAddListDialog() {
         this.addListDialogVisible = false;

@@ -69,11 +69,15 @@ For more information on using the Angular CLI, including detailed command refere
 
 ## Inklistrat
 
+
+## Bygg 
 ```bash
-self.crypto.randomUUID()
+npm run build --output-path="docs" --base-href=""
 ```
+
 
 
 https://github.com/Codemelia/basic-todo-app/blob/master/src/app/services/storage.service.ts
 https://github.com/Jojjeboy/doneit/tree/master/src/app
 https://primeng.org/autocomplete
+

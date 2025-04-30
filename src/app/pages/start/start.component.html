@@ -10,7 +10,7 @@
                         <div class="category-order">
                             <i class="pi pi-chevron-up" *ngIf="category.order > 0"
                                 (click)="setCategoryOrder(category.uuid, 'up')"></i>
-                            &nbsp; 
+                            &nbsp;
                             <i class="pi pi-chevron-down pl-4" *ngIf="category.order < (data.categories.length - 1)"
                                 (click)="setCategoryOrder(category.uuid, 'down')"></i>
                         </div>
@@ -31,6 +31,10 @@
         <p class="mb-4">
             <p-button variant="text" [raised]="true" severity="success" icon="pi pi-plus" label="Lägg till kategori"
                 (click)="showAddCatDialog()" aria-label="Save" />
+        </p>
+        <p class="mt-4">
+            <p-button severity="danger" icon="pi pi-exclamation-triangle" *ngIf="resetDataBtn" label="Återställ data från json"
+                (click)="showResetLSDataDialog()" aria-label="Save" />
         </p>
     </div>
 </div>
@@ -70,4 +74,19 @@
         <div class="flex justify-end">
         </div>
     </div>
+</p-dialog>
+
+
+<p-dialog header="Reset LS data" [modal]="true" [(visible)]="resetDataDialogVisible" [style]="{ width: '25rem' }">
+    <div class="flex items-center mb-4">
+        <p><strong>Är du säker på att du vill nollställa all data?</strong><br />
+        Detta kommer att ta bort alla kategorier och listor.<br />
+        Vill du fortsätta?<br />
+        <strong>Detta kan inte ångras.</strong></p>
+    </div>
+    <div class="flex items-center justify-end">
+        <p-button label="Ångra" class="pr-2" severity="secondary" (click)="dontresetLSData()" />
+        <p-button label="Återställ data" severity="danger" (click)="resetLSData()" />
+    </div>
+
 </p-dialog>
