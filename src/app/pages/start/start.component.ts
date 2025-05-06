@@ -20,6 +20,8 @@ import { AddListDialogComponent } from '../../resuable-componentents/add-list-di
 import { CategoryService } from '../../service/category/category.service';
 import { LocalstorageService } from '../../service/localstorage/localstorage.service';
 import { HttpClient } from '@angular/common/http';
+import { AccordionModule } from 'primeng/accordion';
+
 
 
 
@@ -37,6 +39,7 @@ import { HttpClient } from '@angular/common/http';
         TextareaModule,
         FloatLabelModule,
         ColorPickerModule,
+        AccordionModule,
         ListListsComponent,
         AddListDialogComponent
     ],
@@ -52,8 +55,8 @@ export class StartComponent implements OnInit {
     position!: string;
     addListDialogVisible: boolean = false;
     addCategoryDialogVisible: boolean = false;
-    resetDataBtn: boolean = true;  // For development purposes only
-    resetDataDialogVisible: boolean = false;  // For development purposes only
+    resetDataBtn: boolean = window.location.hostname === 'localhost' || window.location.hostname === '';  // For development purposes only
+    resetDataDialogVisible: boolean = false; // For development purposes only
     categoryUuid!: string;
     colorsToPickfrom: string[] = [];
     chosenColor: string = '#000000'; // Default color

@@ -1,32 +1,37 @@
-<div class="grid mb-8" *ngFor="let category of data.categories; let i = index">
-    <div class="col-span-12 lg:col-span-6 xl:col-span-3">
-        <div class="card mb-0">
-            <div class=" mt-2">
-                <div class="">
-                    <div class="category-top">
-                        <div class="category.title">
-                            <h4><a [routerLink]="['category/', category.uuid]">{{ category.title }}</a></h4>
+<p-accordion value="0" *ngFor="let category of data.categories; let i = index" [multiple]="true">
+    <p-accordion-panel value="0">
+        <p-accordion-header><h4 class="category-title">{{ category.title }}</h4></p-accordion-header>
+        <p-accordion-content>
+            <div class="grid mb-8">
+                <div class="col-span-12 lg:col-span-6 xl:col-span-3">
+                    <div class="card mb-0">
+                        <div class=" mt-2">
+                            <div class="">
+                                
+                                <app-list-lists [category]="category"></app-list-lists>
+                            </div>
+                            <div class="category-order">
+                                <i class="pi pi-arrow-down pl-4" *ngIf="category.order < (data.categories.length - 1)"
+                                    (click)="setCategoryOrder(category.uuid, 'down')"></i>
+                                    <span *ngIf="category.order < (data.categories.length - 1)"> &nbsp; &nbsp;  &nbsp; </span> 
+                                <i class="pi pi-arrow-up" *ngIf="category.order > 0"
+                                    (click)="setCategoryOrder(category.uuid, 'up')"></i>
+
+                            </div>
                         </div>
-                        <div class="category-order">
-                            <i class="pi pi-chevron-up" *ngIf="category.order > 0"
-                                (click)="setCategoryOrder(category.uuid, 'up')"></i>
-                            &nbsp;
-                            <i class="pi pi-chevron-down pl-4" *ngIf="category.order < (data.categories.length - 1)"
-                                (click)="setCategoryOrder(category.uuid, 'down')"></i>
-                        </div>
+                        <p>
+                            <p-button icon="pi pi-plus" [style]="{'background': category.color, 'border-color': category.color}" label="Lägg till lista" (click)="showAddListDialog(category.uuid)"
+                                    aria-label="Save" />
+                        </p>
                     </div>
-                    <app-list-lists [category]="category"></app-list-lists>
                 </div>
             </div>
-            <p>
-                <p-button icon="pi pi-plus" label="Lägg till lista" (click)="showAddListDialog(category.uuid)"
-                    aria-label="Save" />
-            </p>
-        </div>
-    </div>
-</div>
+        </p-accordion-content>
+    </p-accordion-panel>
+</p-accordion>
 
-<div class="grid mb-16">
+
+<div class="grid mb-16 mt-6">
     <div class="col-span-12 lg:col-span-6 xl:col-span-3">
         <p class="mb-4">
             <p-button variant="text" [raised]="true" severity="success" icon="pi pi-plus" label="Lägg till kategori"
