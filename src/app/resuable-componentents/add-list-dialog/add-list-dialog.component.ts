@@ -4,9 +4,10 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { FloatLabel } from 'primeng/floatlabel';
 import { TodoService } from '../../service/todo/todo.service';
-import { MiscService } from '../../service/misc/misc.service';
 import { Router } from '@angular/router';
 import { List } from '../../interface/List.interface';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-add-list-dialog',
@@ -14,8 +15,10 @@ import { List } from '../../interface/List.interface';
     FloatLabel,
     ReactiveFormsModule,
     DialogModule,
-    ButtonModule
+    ButtonModule,
+    ToastModule
   ],
+  providers: [MessageService],
   templateUrl: './add-list-dialog.component.html',
   styleUrl: './add-list-dialog.component.scss'
 })
@@ -43,7 +46,9 @@ export class AddListDialogComponent implements OnInit {
   constructor(
     private todoService: TodoService,
     private fb: FormBuilder,
-    private router: Router) {
+    private router: Router,
+    private messageService: MessageService
+  ) {
 
   }
 
@@ -63,9 +68,9 @@ export class AddListDialogComponent implements OnInit {
       console.log('List added successfully!');
       this.visible = false; // Close the dialog after adding the list
       this.listForm.reset();
-
+      this.showToast(newList.title); // Show success toast message
       // Redirect to new list
-      this.router.navigate(['/list', newList.uuid, this.categoryUuid]);
+      //this.router.navigate(['/list', newList.uuid, this.categoryUuid]);
     });
   }
 
@@ -73,5 +78,19 @@ export class AddListDialogComponent implements OnInit {
     this.visible = false; // Close the dialog
     this.newItemEvent.emit(this.visible); // Emit the event to notify the parent component
     this.listForm.reset(); // Reset the form
+  }
+
+
+  showToast(listname: string) {
+    this.messageService.add(
+      {
+        severity: 'success', 
+        summary: 'Heading', 
+        detail: 'Lista ' + listname + ' tillagd', // Message content
+        life: 6000, // Duration in milliseconds
+        closable: true, // Allow the toast to be closed by the user
+
+      }
+    );
   }
 }

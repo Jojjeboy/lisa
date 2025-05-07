@@ -157,7 +157,7 @@ export class TodoService {
       else {
         data.categories.forEach((category: Category) => {
           if (category.uuid === categoryUuid) {
-            category.lists.push(list); // Add the new list to the category
+            category.lists.unshift(list); // Add the new list to the category
           }
         });
         this.localStorageService.setData(this.persistenceKey, JSON.stringify(data)); // Save the updated data to local storage

@@ -20,6 +20,8 @@ import { ConfirmDialogComponent } from '../../resuable-componentents/confirm-dia
 import { ListListsComponent } from '../../resuable-componentents/list-lists/list-lists.component';
 import { MiscService } from '../../service/misc/misc.service';
 import { AddListDialogComponent } from '../../resuable-componentents/add-list-dialog/add-list-dialog.component';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-category',
@@ -38,9 +40,11 @@ import { AddListDialogComponent } from '../../resuable-componentents/add-list-di
     FloatLabelModule,
     AccordionModule,
     ColorPickerModule,
+    ToastModule,
     ConfirmDialogComponent,
     ListListsComponent,
     AddListDialogComponent],
+  providers: [MessageService],
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss'
 })
@@ -59,16 +63,14 @@ export class CategoryComponent implements OnInit {
     private router: Router,
     private todoService: TodoService,
     private miscService: MiscService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.categoryUuid = params['id'];
-      this.categoryObservable = this.todoService.getCategory(this.categoryUuid).subscribe(category => {
-        this.category = category; // Assuming you have a List interface defined somewhere
-        console.log(this.category); // Do something with the fetched category data
-      });
+      this.setCategory(); // Fetch the category data using the UUID
     });
 
 
@@ -79,11 +81,20 @@ export class CategoryComponent implements OnInit {
   }
 
 
+  setCategory(){
+    this.categoryObservable = this.todoService.getCategory(this.categoryUuid).subscribe(category => {
+      this.category = category; // Assuming you have a List interface defined somewhere
+      console.log(this.category); // Do something with the fetched category data
+    });
+  }
+
+
   showAddListDialog() {
     this.addListDialogVisible = true;
   }
 
   hideAddListDialog() {
+    this.setCategory();
     this.addListDialogVisible = false;
   }
 
@@ -145,9 +156,9 @@ export class CategoryComponent implements OnInit {
         console.log('Categories updated successfully!');
         this.router
       });
-    });  
+    });
   }
-  
+
   reOrderCategories(): Category[] {
     let reorderedCategories: Category[] = [];
     this.todoService.getCategories().subscribe((categories) => {
