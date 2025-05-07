@@ -1,6 +1,6 @@
 <p-accordion value="0" *ngFor="let category of data.categories; let i = index" [multiple]="true">
     <p-accordion-panel value="0">
-        <p-accordion-header><h4 class="category-title"><a href="/category/{{ category.uuid }}"><i class="pi pi-arrows-v"></i></a> {{ category.title }}</h4></p-accordion-header>
+        <p-accordion-header><h4 class="category-title"><a href="category/{{ category.uuid }}"><i class="pi pi-arrows-v"></i></a> {{ category.title }}</h4></p-accordion-header>
         <p-accordion-content>
             <div class="grid mb-8">
                 <div class="col-span-12 lg:col-span-6 xl:col-span-3">
