@@ -3,7 +3,7 @@
         <div class="card mb-0">
             <div class="">
                 <div>
-                    <a [routerLink]="['//category/', categoryId]">
+                    <a [routerLink]="['/category/', categoryId]">
                         <i class="pi icon-flipped pi-reply" style="font-size: 1.5rem"></i>
                     </a>
                     <h4>
@@ -58,13 +58,13 @@
                                             (dialogAcceptFunc)="deleteList()"></app-confirm-dialog>
                                     </div>
                                 </div>
+                                <div class="mt-6 font-small">Listan uppdaterades
+                                    senast: <span class="text-muted-color"> {{ list.lastTouched | date:"HH:mm - d MMM,
+                                        yyyy " }} </span></div>
                             </p-accordion-content>
                         </p-accordion-panel>
                     </p-accordion>
                 </div>
-                <div class="mt-6 font-small">Listan uppdaterades
-                    senast: <span class="text-muted-color"> {{ list.lastTouched | date:"HH:mm - d MMM,
-                        yyyy " }} </span></div>
             </div>
         </div>
     </div>
