@@ -15,7 +15,7 @@
                     <div class="checkbox-list-container mb-2" *ngFor="let todo of list.todos">
                         <div>
                             <label>
-                                <p-toggleswitch [(ngModel)]="todo.completed" (onChange)="toggleDone()" />
+                                <p-toggleswitch [ngClass]="{'completed': todo.completed}" [(ngModel)]="todo.completed" (onChange)="toggleDone()" />
                             </label>
                         </div>
                         <div><span class="checkbox__inner"></span>

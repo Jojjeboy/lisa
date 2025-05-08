@@ -5,6 +5,9 @@
     "projects": {
         "sakai-ng": {
             "projectType": "application",
+            "i18n": {
+                "sourceLocale": "sv" 
+            },
             "schematics": {
                 "@schematics/angular:component": {
                     "style": "scss"
@@ -24,7 +27,8 @@
                         "index": "src/index.html",
                         "browser": "src/main.ts",
                         "polyfills": [
-                            "zone.js"
+                          "zone.js",
+                          "@angular/localize/init"
                         ],
                         "tsConfig": "tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
@@ -82,8 +86,9 @@
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
                         "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
+                          "zone.js",
+                          "zone.js/testing",
+                          "@angular/localize/init"
                         ],
                         "tsConfig": "tsconfig.spec.json",
                         "inlineStyleLanguage": "scss",
