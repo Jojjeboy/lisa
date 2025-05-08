@@ -150,6 +150,7 @@ export class StartComponent implements OnInit {
     /* ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''*/
 
     hideAddListDialog() {
+        this.getData();
         this.addListDialogVisible = false;
     }
 

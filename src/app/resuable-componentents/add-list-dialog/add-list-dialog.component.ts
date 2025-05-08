@@ -4,7 +4,6 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { FloatLabel } from 'primeng/floatlabel';
 import { TodoService } from '../../service/todo/todo.service';
-import { Router } from '@angular/router';
 import { List } from '../../interface/List.interface';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
@@ -37,7 +36,7 @@ export class AddListDialogComponent implements OnInit {
   ngOnInit(): void {
     this.listForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
-      description: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(1000)]]
+      description: ['']
     });
     console.log(this.visible);
     
@@ -46,7 +45,6 @@ export class AddListDialogComponent implements OnInit {
   constructor(
     private todoService: TodoService,
     private fb: FormBuilder,
-    private router: Router,
     private messageService: MessageService
   ) {
 
@@ -85,11 +83,10 @@ export class AddListDialogComponent implements OnInit {
     this.messageService.add(
       {
         severity: 'success', 
-        summary: 'Heading', 
-        detail: 'Lista ' + listname + ' tillagd', // Message content
+        summary: 'Ny lista', // Message title
+        detail: 'Lista \'' + listname + '\' tillagd', // Message content
         life: 6000, // Duration in milliseconds
         closable: true, // Allow the toast to be closed by the user
-
       }
     );
   }
