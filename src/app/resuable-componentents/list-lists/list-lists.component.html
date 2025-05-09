@@ -8,16 +8,16 @@
                     {{ list.title }}
                 </h5>
                 <p>{{ list.description }}<p>
-                    <p-chip class="!py-0 !pl-0 !pr-4">
-                        <span
-                        class="text-primary-contrast rounded-full w-12 h-8 flex items-center justify-center" [ngStyle]="{'background-color': category.color }">
-                        {{ list.todos.length  }} / {{ nrOfDone(list.todos) }}
-                    </span>
-                    <span class="ml-2 font-medium">Uppgifter / Avklarade</span>
-                </p-chip>
+                        <p-chip class="!py-0 !pl-0 !pr-4">
+                            <span class="text-primary-contrast rounded-full w-12 h-8 flex items-center justify-center"
+                                [ngStyle]="{'background-color': category.color }">
+                                {{ list.todos.length }} / {{ nrOfDone(list.todos) }}
+                            </span>
+                            <span class="ml-2 font-medium">Uppgifter / Avklarade</span>
+                        </p-chip>
             </a>
         </div>
+        <div class="mt-6 font-small text-muted-color">Använd senast: {{ list.lastTouched | date:"HH:mm - d MMM, yyyy" }}</div>
         <p-divider class="mt-4" *ngIf="category.lists.length > 0"></p-divider>
-        <!--div class="mt-6 font-small text-muted-color">Använd senast: {{ list.lastTouched | date:"HH:mm - d MMM, yyyy" }} </div>
-            </div-->
+    </div>
 </div>

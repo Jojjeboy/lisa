@@ -21,7 +21,10 @@ h4.category-title{
 }
 
 
-.card{
-    padding-top: 0;
-    margin-top: -20px;
+.p-accordionpanel{
+    margin-bottom: 20px;
+    .card{
+        padding-top: 0;
+        margin-top: -20px;
+    }
 }
