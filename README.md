@@ -83,9 +83,26 @@ Till:
 ```bash
 <base href="">
 ```
-
+# Länkar
 
 https://github.com/Codemelia/basic-todo-app/blob/master/src/app/services/storage.service.ts
 https://github.com/Jojjeboy/doneit/tree/master/src/app
 https://primeng.org/autocomplete
 https://github.com/Jojjeboy/lisa/actions
+
+
+# Tankar
+
+## Komponenter
+Hanterar data inom komponenten och skickar komponent data och eventuella id till Data-Service
+
+
+## Data-Service
+Tar emot komponentdata och skickar strängdata till Persistens-Service
+- Ska inte hantera logik för komponenter
+- Ska transformera sträng <> Typ
+
+
+## Persistens-Service
+Tar emot strängdata och returnerar sträng.
+- Har ingen kunskap om datatyp eller. 
